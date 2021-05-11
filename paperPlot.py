@@ -391,22 +391,24 @@ if __name__ == '__main__':
             h_bsm_r = []
 
             for i,j in enumerate(ks):
+                hb  = deepcopy(h_bsm[i])
                 if args.stackQCD == None:
                     h_ = deepcopy(h_sm)
                 else:
                     h_ = deepcopy(h_smewk)
                     h_.Add(h_smqcd)
 
-                h_.Divide(h_bsm[i])
+                #h_.Divide(h_bsm[i])
+                hb.Divide(h_) #BSM/SM
 
-                h_.SetFillColor(0)
-                h_.SetLineColor(d["BSM"][i])
-                h_.SetLineWidth(2)
-                h_bsm_r.append(h_)
+                hb.SetFillColor(0)
+                hb.SetLineColor(d["BSM"][i])
+                hb.SetLineWidth(2)
+                h_bsm_r.append(hb)
 
             h_bsm_r[0].GetYaxis().SetRangeUser(0.5,1.5)
 
-            h_bsm_r[0].GetYaxis().SetTitle("SM / BSM")
+            h_bsm_r[0].GetYaxis().SetTitle("BSM / SM")
             h_bsm_r[0].GetYaxis().SetTitleSize(0.1)
             h_bsm_r[0].GetYaxis().SetTitleOffset(0.5)
             h_bsm_r[0].GetYaxis().SetNdivisions(4)

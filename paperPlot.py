@@ -572,7 +572,7 @@ if __name__ == '__main__':
 
 
                 h_bsm_ratio_err.GetYaxis().SetRangeUser(0.5,1.5)
-                h_bsm_ratio_err.GetYaxis().SetTitle("SM / BSM")
+                h_bsm_ratio_err.GetYaxis().SetTitle("BSM / SM")
                 h_bsm_ratio_err.GetYaxis().SetTitleSize(0.1)
                 h_bsm_ratio_err.GetYaxis().SetTitleOffset(0.5)
                 h_bsm_ratio_err.GetYaxis().SetNdivisions(4)

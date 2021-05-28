@@ -61,22 +61,51 @@ def convertName(name):
         "ptl3" : "p_{T,l3}",
         "ptll" : "p_{T,ll}",
         "deltaetajj": "#Delta#eta_{jj}",
-        "etaj1" : "#eta_{j1}",
-        "etaj2" : "#eta_{j2}",
+        "etaj1" : "#eta^{j1}",
+        "etaj2" : "#eta^{j2}",
         "mee"   : "m_{ee}",
         "ptee"  : "p_T^{ee}",
-        "etal1" : "#eta_{l1}",
-        "etal2" : "#eta_{l2}",
+        "etal1" : "#eta^{l1}",
+        "etal2" : "#eta^{l2}",
+        "mjj_V": "m_{jj}^{V}",
+        "mjj_noV": "m{jj}^{noV}",
+        "mjj_max": "m_{jj}^{max}",
+        "mjj_nomax": "m_{jj}^{nomax}",
+        "ptj1_V": "p_{T,j1}^{V}",
+        "ptj1_noV": "p_{T,j1}^{noV}",
+        "ptj1_mjjmax": "p_{T,j1}^{mjj max}",
+        "ptj1_mjjnomax": "p_{T,j1}^{mjj nomax}",
+        "ptj2_V": "p_{T,j2}^{V}",
+        "ptj2_noV": "p_{T,j2}^{noV}",
+        "ptj2_mjjmax": "p_{T,j2}^{mjj max}",
+        "ptj2_mjjnomax": "p_{T,j2}^{mjj nomax}",
+        "etaj1_V": "#eta_{j1}^{V}",
+        "etaj1_noV": "#eta_{j1}^{noV}",
+        "etaj1_mjjmax": "#eta_{j1}^{mjj max}",
+        "etaj1_mjjnomax": "#eta_{j1}^{mjj nomax}",
+        "etaj2_V": "#eta_{j2}^{V}",
+        "etaj2_noV": "#eta_{j2}^{noV}",
+        "etaj2_mjjmax": "#eta_{j2}^{mjj max}",
+        "etaj2_mjjnomax": "#eta_{j2}^{mjj nomax}",
+        "deltaetajj_V": "#Delta#eta_{jj}^{V}",
+        "deltaetajj_noV": "#Delta#eta_{jj}^{noV}",
+        "deltaetajj_mjjmax": "#Delta#eta_{jj}^{mjj max}",
+        "deltaetajj_mjjnomax": "#Delta#eta_{jj}^{mjj nomax}",
+        "deltaphijj_V": "#Delta#phi_{jj}^{V}",
+        "deltaphijj_noV": "#Delta#phi_{jj}^{noV}",
+        "deltaphijj_mjjmax": "#Delta#phi_{jj}^{mjj max}",
+        "deltaphijj_mjjnomax": "#Delta#phi_{jj}^{mjj nomax}",
         " ": None
     }
 
-    if "_" in name:
-        name = name.split("_")
-        l = [convertName(i) for i in name]
-        return ":".join(i for i in l)
+    #if "_" in name:
+    #    name = name.split("_")
+    #    l = [convertName(i) for i in name]
+    #    return ":".join(i for i in l)
 
-    else:
-        return d[name]
+    #else:
+    #    return d[name]
+    return d[name]
 
 def mkdir(path):
     try:

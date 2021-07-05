@@ -16,7 +16,7 @@ def ConvertOptoLatex(op):
 
     d = {
         'cHDD': 'Q_{HD}',
-        'cHbox': 'Q_{H#Box}',
+        'cHbox': 'Q_{Hbox}',
         'cW': 'Q_{W}',
         'cHB': 'Q_{HB}',
         'cHW': 'Q_{HW}',
@@ -51,7 +51,9 @@ def ConvertProc(proc):
         "WZQCD": "W^{#pm}Z+2j",
         "inWW": "W^{#pm}W^{#mp}+0j",
         "ZV": "ZV+2j",
+        "ZZ2e2mu_ZZ2e2muQCD": "ZZ+2j",
         "combined": "Combined",
+        "combined_noq": "Combined O(#Lambda^{-2})"
     }
 
     if proc in d.keys(): return d[proc]
@@ -125,6 +127,9 @@ def Retrieve2DLikelihood(operators, op, maxNLL):
         x_max = cont_graphs1[0].GetXaxis().GetXmax()
         delta = max(abs(x_min),abs(x_max))
 
+        #JUST FOR THE MOMENT NO SCALES ON X
+        delta = -100
+
         if delta > 1:
             if 1 < delta < 2:
                 xscale = 0.5
@@ -189,16 +194,26 @@ def Retrieve2DLikelihood(operators, op, maxNLL):
 
         f.Close()
 
-        y_min = abs(cont_graphs[0].GetYaxis().GetXmin())
-        y_max = abs(cont_graphs[0].GetYaxis().GetXmax())
-        extreme = max(y_min, y_max)
+        y_min = 0
+        y_max = 0
+
+        for i in range(len(cont_graphs[0])):
+            if cont_graphs[0][i].GetYaxis().GetXmin() < y_min: y_min = cont_graphs[0][i].GetYaxis().GetXmin()
+            if cont_graphs[0][i].GetYaxis().GetXmax() > y_max: y_max = cont_graphs[0][i].GetYaxis().GetXmax()
+
+        #y_min = abs(cont_graphs[0].GetYaxis().GetXmin())
+        #y_max = abs(cont_graphs[0].GetYaxis().GetXmax())
+        extreme = max(abs(y_min), abs(y_max))
 
         print(operators[op][proc]['op'],op)
         color = operators[op][proc]['linecolor']
         lines = operators[op][proc]['linesize']
+        ls = operators[op][proc]['linestyle']
+        print("color: ", color)
         for i in range(len(cont_graphs[0])):
-            cont_graphs[0][i].SetLineWidth(4)
+            cont_graphs[0][i].SetLineWidth(5)
             cont_graphs[0][i].SetLineColor(color)
+            cont_graphs[0][i].SetLineStyle(ls)
 
         canvas_d.append({
             '1sg' : cont_graphs[0],
@@ -301,18 +316,37 @@ if __name__ == "__main__":
     parser.add_argument('--maxNLL',     dest='maxNLL',     help='Max likelihood', required = False, default = "20")
     parser.add_argument('--outf',     dest='outf',     help='out folder name', required = False, default = "summary2D")
     parser.add_argument('--lumi',     dest='lumi',     help='lumi to plot', required = False, default = "100")
+    parser.add_argument('--splitLeg',     dest='splitLeg',     help='Do not plot legend on canvas but in a sepaerate plot', action="store_true", default = False)
+
     args = parser.parse_args()
 
     is_combo = False
     operators = OrderedDict()
     plt_options = {}
 
+    ROOT.gStyle.SetPalette(ROOT.kDarkRainBow)
+
 
     execfile(args.cfg)
 
     mkdir(args.outf)
 
+    ROOT.gStyle.SetLineStyleString(11,"20 20 50")
+    ROOT.gStyle.SetLineStyleString(12,"30 10 60")
+    ROOT.gStyle.SetLineStyleString(13,"10 5 20")
+    ROOT.gStyle.SetLineStyleString(14,"30 80")
+    ROOT.gStyle.SetLineStyleString(15,"10 30")
+
     if not is_combo:
+
+        op_colors = {}
+        for op in  operators.keys():
+            for op2 in operators[op].keys():
+                op_colors[op2] = {}
+                op_colors[op2]['color'] = operators[op][op2]['linecolor']
+                op_colors[op2]['ls'] = operators[op][op2]['linestyle']
+
+        print(op_colors)
 
         for op in operators.keys():
 
@@ -320,8 +354,9 @@ if __name__ == "__main__":
 
             mkdir(args.outf + "/" + op)
 
-            #create as many canvas as necessary each containing up to 5 contours
-            n_ = math.ceil(float(len(canvas_d['1sg']))/5)
+            #create as many canvas as necessary each containing up to 7 contours
+            n_ = math.ceil(float(len(canvas_d['1sg']))/7)
+            step = 7
 
             for idx in range(0,int(n_)):
 
@@ -338,52 +373,41 @@ if __name__ == "__main__":
 
                 leg = ROOT.TLegend(0.15, 0.8, 0.85, 0.85)
                 leg.SetBorderSize(0)
-                leg.SetNColumns(len(canvas_d['1sg'][ idx*5: (idx*5) + 5]))
+                leg.SetNColumns(len(canvas_d['1sg'][ idx*step: (idx*step) + step]))
                 leg.SetTextSize(0.025)
 
-                linestyles = [2,7,5,6,4] * int(n_)
-#                ROOT.gStyle.SetPalette(ROOT.kRainBow)
-#                col = ROOT.TColor.GetPalette()
-#                step = len(col)/5
-#                cols = []
-#                for i in range (0,5):
-#                    cols.append(col[int(step*i)])
-#                cols = cols * int(n_)
-                #cols = [4,433,417,6,2] * int(n_)
-                cols = [ROOT.kAzure+1, ROOT.kGray+2, ROOT.kViolet-4, ROOT.kSpring+9, ROOT.kOrange+10]* int(n_)
-
-                c.SetGrid()
-                
                 #find mminimu
                 y_min = 0
                 y_max = 0
-                for gid in range(len(canvas_d['1sg'][idx*5])):
-                    if canvas_d['1sg'][idx*5][gid].GetYaxis().GetXmin() < y_min : y_min = canvas_d['1sg'][idx*5][gid].GetYaxis().GetXmin()
-                    if canvas_d['1sg'][idx*5][gid].GetYaxis().GetXmax() < y_max : y_max = canvas_d['1sg'][idx*5][gid].GetYaxis().GetXmax()
+                for gid in range(len(canvas_d['1sg'][idx*step])):
+                    if canvas_d['1sg'][idx*step][gid].GetYaxis().GetXmin() < y_min : y_min = canvas_d['1sg'][idx*step][gid].GetYaxis().GetXmin()
+                    if canvas_d['1sg'][idx*step][gid].GetYaxis().GetXmax() < y_max : y_max = canvas_d['1sg'][idx*step][gid].GetYaxis().GetXmax()
 
                 y_min_new = 1.1*y_min
                 y_max_new = 1.3*y_max
 
-                canvas_d['1sg'][idx*5][0].GetXaxis().SetLimits(-1, 1)
-                canvas_d['1sg'][idx*5][0].GetYaxis().SetRangeUser(y_min_new, y_max_new) #add legend space
-                canvas_d['1sg'][idx*5][0].GetYaxis().SetTitleOffset(1.6)
-                canvas_d['1sg'][idx*5][0].GetYaxis().SetTitle(ConvertOptoLatex(op))
-                canvas_d['1sg'][idx*5][0].GetXaxis().SetTitle("2nd Operator")
-                canvas_d['1sg'][idx*5][0].SetTitle("")
-                canvas_d['1sg'][idx*5][0].SetLineStyle(linestyles[0])
-                canvas_d['1sg'][idx*5][0].SetLineColor(cols[0])
-                canvas_d['1sg'][idx*5][0].Draw("AL")
-                canvas_d['min'][idx*5][0].Draw("P")
+                print(canvas_d['1sg'])
+                canvas_d['1sg'][idx*step][0].GetXaxis().SetLimits(-1, 1)
+                canvas_d['1sg'][idx*step][0].GetYaxis().SetRangeUser(y_min_new, y_max_new) #add legend space
+                canvas_d['1sg'][idx*step][0].GetYaxis().SetTitleOffset(1.4)
+                canvas_d['1sg'][idx*step][0].GetXaxis().SetTitleOffset(1.1)
+                canvas_d['1sg'][idx*step][0].GetYaxis().SetTitle(ConvertOptoLatex(op))
+                canvas_d['1sg'][idx*step][0].GetYaxis().SetTitleSize(.04)
+                canvas_d['1sg'][idx*step][0].GetXaxis().SetTitleSize(.04)
+                canvas_d['1sg'][idx*step][0].GetXaxis().SetTitle("2nd Operator")
+                canvas_d['1sg'][idx*step][0].SetTitle("")
+                canvas_d['1sg'][idx*step][0].Draw("AL")
+                canvas_d['min'][idx*step].Draw("P")
 
-                name = ConvertOptoLatex(canvas_d['n_op'][idx*5])
-                if canvas_d['scale'][idx*5] != 1: name = str(canvas_d['scale'][idx*5]) + " #times " + name
+                name = ConvertOptoLatex(canvas_d['n_op'][idx*step])
+                if canvas_d['scale'][idx*step] != 1: name = str(canvas_d['scale'][idx*step]) + " #times " + name
 
-                leg.AddEntry(canvas_d['1sg'][idx*5][0], name, "L")
+                leg.AddEntry(canvas_d['1sg'][idx*step][0], name, "L")
 
-                for i,j, n, ls, col, scale in zip(canvas_d['1sg'][idx*5 +1:  (idx*5) + 5], canvas_d['min'][idx*5 +1:  (idx*5) + 5], canvas_d['n_op'][idx*5 +1:  (idx*5) + 5], linestyles[idx*5 +1:  (idx*5) + 5], cols[idx*5 +1:  (idx*5) + 5], canvas_d['scale'][idx*5 +1:  (idx*5) + 5]):
+                for i,j, n, scale in zip(canvas_d['1sg'][idx*step +1:  (idx*step) + step], canvas_d['min'][idx*step +1:  (idx*step) + step], canvas_d['n_op'][idx*step +1:  (idx*step) + step], canvas_d['scale'][idx*step +1:  (idx*step) + step]):
                     for g in i:
-                        g.SetLineStyle(ls)
-                        g.SetLineColor(col)
+                        #g.SetLineStyle(ls)
+                        #g.SetLineColor(col)
                         g.Draw("L same")
                         if g.GetYaxis().GetXmin() < y_min : 
                             y_min = g.GetYaxis().GetXmin()
@@ -419,16 +443,80 @@ if __name__ == "__main__":
                     tex4.SetLineWidth(2)
                     tex4.Draw()
 
-                leg.Draw()
+                if not args.splitLeg: leg.Draw()
                 c.Draw()
+                canvas_d['1sg'][idx*step][0].GetYaxis().SetRangeUser(-1.1*abs(y_min), 1.1*abs(y_max))
                 c.Print(args.outf + "/" + op + "/r_" + op + "{}.pdf".format(idx))
 
-                canvas_d['1sg'][idx*5].GetYaxis().SetRangeUser(1.1*y_min, 1.2*y_max)
+                canvas_d['1sg'][idx*step][0].GetYaxis().SetRangeUser(-1.5*abs(y_min), 1.5*abs(y_max))
                 c.Draw()
                 c.Print(args.outf + "/" + op + "/" + op + "{}.pdf".format(idx))
+
+        if args.splitLeg:
+
+            c = ROOT.TCanvas("c_legend", "c_legend", 1000, 300)
+            margins = 0.13
+
+            ROOT.gPad.SetRightMargin(margins)
+            ROOT.gPad.SetLeftMargin(margins)
+            ROOT.gPad.SetBottomMargin(margins)
+            ROOT.gPad.SetTopMargin(margins)
+            ROOT.gPad.SetFrameLineWidth(1)
+            ROOT.gPad.SetTicks()
+
+            leg = ROOT.TLegend(0.15, 0.15, 0.85, 0.85)
+            leg.SetBorderSize(0)
+            leg.SetNColumns(5)
+            leg.SetTextSize(0.06)
+
+            #fakeGa = deepcopy(canvas_d['1sg'][0][0])
+            #fakeGa.GetYaxis().SetTitleOffset(1.1)
+            #fakeGa.GetYaxis().SetTitleOffset(1.1)
+            #fakeGa.SetLineColor(0)
+            #fakeGa.GetXaxis().SetLabelSize(0)
+            #fakeGa.GetYaxis().SetLabelSize(0)
+            #fakeGa.GetXaxis().SetTitle("")
+            #fakeGa.GetYaxis().SetTitle("")
+            #fakeGa.SetTitle("")
+            #fakeGa.Draw("AL")
+            
+            frame = c.DrawFrame(-1,-1,1,1)
+            frame.GetXaxis().SetLabelSize(0)
+            frame.GetYaxis().SetLabelSize(0)
+            frame.GetYaxis().SetNdivisions(505)
+            frame.GetXaxis().SetTitle("")
+            frame.GetYaxis().SetTitle("")
+            graphs = []
+
+            for idx, key in enumerate(op_colors.keys()):
+                color = op_colors[key]["color"]
+                ls = op_colors[key]["ls"]
+
+                fakeG = ROOT.TGraph()
+                fakeG.SetLineColor(color)
+                fakeG.SetLineStyle(ls)
+                fakeG.SetLineWidth(3)
+                graphs.append(deepcopy(fakeG))
+                leg.AddEntry(graphs[idx], ConvertOptoLatex(key), "F")
+
+
+            #tex3 = ROOT.TLatex(0.86,.89,"100 fb^{-1}   (13 TeV)")
+            #tex3.SetNDC()
+            #tex3.SetTextAlign(31)
+            #tex3.SetTextFont(42)
+            #tex3.SetTextSize(0.04)
+            #tex3.SetLineWidth(2)
+            #tex3.Draw()
+
+            leg.Draw()
+
+            c.Draw()
+            c.Print(args.outf + "/legend.pdf")
+            c.Print(args.outf + "/legend.png")
+
         
     else:
-
+        
         for op_pair in operators.keys():
 
             print("[INFO]: Generating plots for {}".format(op_pair))
@@ -454,6 +542,9 @@ if __name__ == "__main__":
                 # and the minimum (0,0) by construction
                 gs, cont_graphs, exp = Retrieve2DLikelihoodCombined(operators[op_pair][key]['path'], 
                                                                 [op_x, op_y], args.maxNLL, 1., 1.)
+
+
+                print(len(cont_graphs))
                 """
                 for j in cont_graphs:
                     for item in j:
@@ -469,7 +560,7 @@ if __name__ == "__main__":
                 #set style
                 for j in range(len(cont_graphs)):
                     for h in range(len(cont_graphs[j])):
-                        cont_graphs[j][h].SetLineWidth(4)
+                        cont_graphs[j][h].SetLineWidth(5)
 
                 
 
@@ -480,10 +571,10 @@ if __name__ == "__main__":
                         cont_graphs[0][h].SetLineColorAlpha(int(operators[op_pair][key]['color']), 0.9)
                         cont_graphs[0][h].SetFillStyle(1001) #sollid
                         cont_graphs[0][h].SetFillColorAlpha(int(operators[op_pair][key]['color']), 0.1)
-                        if cont_graphs[0][h].GetXaxis().GetXmin() < min_x: min_x = cont_graphs[j][h].GetXaxis().GetXmin()
-                        if cont_graphs[0][h].GetXaxis().GetXmax() > max_x: max_x = cont_graphs[j][h].GetXaxis().GetXmax()
-                        if cont_graphs[0][h].GetYaxis().GetXmin() < min_y: min_y = cont_graphs[j][h].GetYaxis().GetXmin()
-                        if cont_graphs[0][h].GetYaxis().GetXmax() > max_y: max_y = cont_graphs[j][h].GetYaxis().GetXmax()
+                        if cont_graphs[0][h].GetXaxis().GetXmin() < min_x: min_x = cont_graphs[0][h].GetXaxis().GetXmin()
+                        if cont_graphs[0][h].GetXaxis().GetXmax() > max_x: max_x = cont_graphs[0][h].GetXaxis().GetXmax()
+                        if cont_graphs[0][h].GetYaxis().GetXmin() < min_y: min_y = cont_graphs[0][h].GetYaxis().GetXmin()
+                        if cont_graphs[0][h].GetYaxis().GetXmax() > max_y: max_y = cont_graphs[0][h].GetYaxis().GetXmax()
                         # cont_graphs[0].SetLineColorAlpha(int(operators[op_pair][key]['color']), 0.7)
 
                     #centering on the combined
@@ -499,16 +590,17 @@ if __name__ == "__main__":
                             cont_graphs[j][h].SetFillStyle(0)
                             cont_graphs[j][h].SetFillColor(0)
                             #cont_graphs[j][h].SetFillColorAlpha(int(operators[op_pair][key]['color']), 0.1)
-                            min_x = cont_graphs[j][h].GetXaxis().GetXmin()
-                            max_x = cont_graphs[j][h].GetXaxis().GetXmax()
-                            min_y = cont_graphs[j][h].GetYaxis().GetXmin()
-                            max_y = cont_graphs[j][h].GetYaxis().GetXmax()
+                            #min_x = cont_graphs[j][h].GetXaxis().GetXmin()
+                            #max_x = cont_graphs[j][h].GetXaxis().GetXmax()
+                            #min_y = cont_graphs[j][h].GetYaxis().GetXmin()
+                            #max_y = cont_graphs[j][h].GetYaxis().GetXmax()
                 
                 for j in range(len(cont_graphs)):
                         for h in range(len(cont_graphs[j])):
                             cont_graphs[j][h].SetLineStyle(int(operators[op_pair][key]['linestyle']))
                 
                 #print(cont_graphs[0])
+                if len(cont_graphs) == 0:  continue
                 graphs.append([key, cont_graphs[0], exp, [min_x, max_x],[min_y, max_y]])
 
             #zoomed version
@@ -544,18 +636,31 @@ if __name__ == "__main__":
 
             #first graph
             for i in range(len(graphs[0][1])):
-                graphs[0][1][i].GetYaxis().SetTitleOffset(1.5)
-                graphs[0][1][i].GetXaxis().SetTitleOffset(1.2)
+                graphs[0][1][i].GetYaxis().SetTitleOffset(1.4)
+                graphs[0][1][i].GetXaxis().SetTitleOffset(1.1)
+                graphs[0][1][i].GetXaxis().SetTitleSize(.04)
+                graphs[0][1][i].GetYaxis().SetTitleSize(.04)
                 graphs[0][1][i].GetYaxis().SetTitle(ConvertOptoLatex(op_y))
                 graphs[0][1][i].GetXaxis().SetTitle(ConvertOptoLatex(op_x))
                 graphs[0][1][i].SetTitle("")
                 #graphs[0][1].SetLineStyle(linestyles[0])
                 if i == 0:
                     #graphs[0][1][i].GetYaxis().SetRangeUser(graphs[0][1][i].GetYaxis().GetXmin(), graphs[0][1][i].GetYaxis().GetXmax() + 0.2*(graphs[0][1][i].GetYaxis().GetXmax()))
-                    graphs[0][1][i].GetYaxis().SetRangeUser(graphs[0][4][0], graphs[0][4][1])
-                    graphs[0][1][i].GetXaxis().SetRangeUser(graphs[0][3][0], graphs[0][3][1])
-                    if graphs[0][0]  == "combined": graphs[0][1][i].Draw("ALF")
-                    else: graphs[0][1][i].Draw("AL")
+                    if graphs[0][0]  == "combined": 
+                        graphs[0][1][i].Draw("ALF")
+                        #graphs[0][1][i].Draw("A")
+                        graphs[0][1][i].GetYaxis().SetRangeUser(graphs[0][4][0], graphs[0][4][1])
+                        graphs[0][1][i].GetXaxis().SetLimits(graphs[0][3][0], graphs[0][3][1])
+                        graphs[0][1][i].Draw("ALF")
+                        #graphs[0][1][i].Draw("A")
+                        c.Update()
+
+                    else: 
+                        graphs[0][1][i].Draw("AL")
+                        graphs[0][1][i].GetYaxis().SetRangeUser(graphs[0][4][0], graphs[0][4][1])
+                        graphs[0][1][i].GetXaxis().SetLimits(graphs[0][3][0], graphs[0][3][1])
+                        graphs[0][1][i].Draw("AL")
+                        c.Update()
                 else:
                     if graphs[0][0]  == "combined": graphs[0][1][i].Draw("LF same")
                     else: graphs[0][1][i].Draw("L same")
@@ -569,14 +674,20 @@ if __name__ == "__main__":
 
             for i in graphs[1:]:
                 for j in i[1]:
-                    if i[0] == "combined": j.Draw("LF same")
+                    if i[0] == "combined": 
+                        print("combined")
+                        j.Draw("LF same")
                     else: j.Draw("L same")
-                i[2].Draw("P same")
+                #i[2].Draw("P same")
                 name = i[0]
                 #if name == "combined": name = "Combined"
                 #if scale!=1 : name =  str(scale) + " #times " + n
                 #leg.AddEntry(i[1][0], name, "L")
-                leg.AddEntry(i[1][0], ConvertProc(name), "F")
+                print(i[0], i[1])
+                try:
+                    leg.AddEntry(i[1][0], ConvertProc(name), "F")
+                except:
+                    pass
 
             #Draw fancy
 
@@ -603,11 +714,11 @@ if __name__ == "__main__":
                 tex4.SetLineWidth(2)
                 tex4.Draw()
 
-            leg.Draw()
+            
+            if not args.splitLeg: leg.Draw()
             c.Draw()
             c.Print(args.outf + "/" + op_pair + ".pdf")
             c.Print(args.outf + "/" + op_pair + ".png")
-
 
             #unzoomed version
 
@@ -626,6 +737,8 @@ if __name__ == "__main__":
             max_x  = max(higher_x)
             min_y  = min(lower_y)
             max_y  = max(higher_y)
+
+            print(lower_x)
 
             c = ROOT.TCanvas("c_{}_unzoomed".format(op_pair), "c_{}_unzoomed".format(op_pair), 1000, 1000)
 
@@ -648,9 +761,11 @@ if __name__ == "__main__":
             #first graph
             for i in range(len(graphs[0][1])):
                 graphs[0][1][i].GetYaxis().SetRangeUser(min_y, max_y + 0.3*max_y)
-                graphs[0][1][i].GetXaxis().SetRangeUser(min_x, max_x)
-                graphs[0][1][i].GetYaxis().SetTitleOffset(1.5)
-                graphs[0][1][i].GetXaxis().SetTitleOffset(1.2)
+                graphs[0][1][i].GetXaxis().SetLimits(min_x, max_x)
+                graphs[0][1][i].GetYaxis().SetTitleOffset(1.4)
+                graphs[0][1][i].GetXaxis().SetTitleOffset(1.1)
+                graphs[0][1][i].GetXaxis().SetTitleSize(.04)
+                graphs[0][1][i].GetYaxis().SetTitleSize(.04)
                 graphs[0][1][i].GetYaxis().SetTitle(ConvertOptoLatex(op_y))
                 graphs[0][1][i].GetXaxis().SetTitle(ConvertOptoLatex(op_x))
                 graphs[0][1][i].SetTitle("")
@@ -683,12 +798,16 @@ if __name__ == "__main__":
             for i in graphs[1:]:
                 for j in i[1]:
                     j.Draw("L same")
-                i[2].Draw("P same")
+                #i[2].Draw("P same")
                 name = i[0]
                 if name == "combined": name = "Combined"
                 # if scale!=1 : name =  str(scale) + " #times " + n
-                leg.AddEntry(i[1][0], ConvertProc(name), "F")
+                #leg.AddEntry(i[1][0], ConvertProc(name), "F")
                 # leg.AddEntry(i[1][0], name, "L")
+                try:
+                    leg.AddEntry(i[1][0], ConvertProc(name), "F")
+                except:
+                    pass
 
             #Draw fancy
 
@@ -715,10 +834,59 @@ if __name__ == "__main__":
                 tex4.SetLineWidth(3)
                 tex4.Draw()
 
-            leg.Draw()
+            if not args.splitLeg: leg.Draw()
             c.Draw()
             c.Print(args.outf + "/" + op_pair + "_unzoomed.pdf")
             c.Print(args.outf + "/" + op_pair + "_unzoomed.png")
+
+        if args.splitLeg:
+
+            c = ROOT.TCanvas("c_legend", "c_legend", 1000, 1000)
+            margins = 0.13
+
+            ROOT.gPad.SetRightMargin(margins)
+            ROOT.gPad.SetLeftMargin(margins)
+            ROOT.gPad.SetBottomMargin(margins)
+            ROOT.gPad.SetTopMargin(margins)
+            ROOT.gPad.SetFrameLineWidth(3)
+            ROOT.gPad.SetTicks()
+
+            leg = ROOT.TLegend(0.15, 0.15, 0.85, 0.85)
+            leg.SetBorderSize(0)
+            leg.SetNColumns(1)
+            leg.SetTextSize(0.06)
+
+            fakeG = deepcopy(graphs[0][1][0])
+            fakeG.GetYaxis().SetTitleOffset(1.1)
+            fakeG.GetYaxis().SetTitleOffset(1.1)
+            fakeG.SetLineColor(0)
+            fakeG.GetXaxis().SetLabelSize(0)
+            fakeG.GetYaxis().SetLabelSize(0)
+            fakeG.GetXaxis().SetTitle("")
+            fakeG.GetYaxis().SetTitle("")
+            fakeG.SetTitle("")
+            fakeG.Draw("AL")
+
+            name = graphs[0][0]
+            leg.AddEntry(graphs[0][1][0], ConvertProc(name), "F")
+
+            for i in graphs[1:]:
+                name = i[0]
+                leg.AddEntry(i[1][0], ConvertProc(name), "F")
+
+            tex3 = ROOT.TLatex(0.86,.89,"100 fb^{-1}   (13 TeV)")
+            tex3.SetNDC()
+            tex3.SetTextAlign(31)
+            tex3.SetTextFont(42)
+            tex3.SetTextSize(0.04)
+            tex3.SetLineWidth(2)
+            tex3.Draw()
+
+            leg.Draw()
+
+            c.Draw()
+            c.Print(args.outf + "/legend.pdf")
+            c.Print(args.outf + "/legend.png")
 
     os.system("cp /afs/cern.ch/user/g/gboldrin/index.php " + args.outf)
 

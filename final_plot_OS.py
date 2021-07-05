@@ -394,8 +394,10 @@ if __name__ == "__main__":
 
     step = len(gd.keys())/2
 
-    AddTgraph(gd)
-    AddTgraphBox(gd_q)
+    AddTgraphBox(gd)
+    AddTgraph(gd_q)
+    #AddTgraph(gd)
+    #AddTgraphBox(gd_q)
 
     first_names = gd.keys()[:5]
     first = OrderedDict()
@@ -438,7 +440,7 @@ if __name__ == "__main__":
 
     """
 
-    c = ROOT.TCanvas("c", "c", 1100, 1600)
+    c = ROOT.TCanvas("c", "c", 1200, 1700)
     pad1 = ROOT.TPad("pad1", "20",0.0, 0.0,1.0, 0.295)
     #pad2 = ROOT.TPad("pad2", "20",0.0, 1.0-2*pad_fraction-0.18, 1.0,  1.0 - pad_fraction-0.2705)
     #pad3 = ROOT.TPad("pad3", "20",0.0,1.0-pad_fraction-0.27,1.0, 1)
@@ -501,7 +503,7 @@ if __name__ == "__main__":
     g_l.SetLineWidth(2)
     g_l.SetMarkerColor(ROOT.kBlack)
     g_l.SetMarkerStyle(20)
-    leg.AddEntry(g_l, "Linear+Quadratic 68% C.L.", "LP")
+    leg.AddEntry(g_l, "Linear 68% C.L.", "LP")
 
     g_l2 = ROOT.TGraph()
     g_l2.SetLineColor(ROOT.kBlack)
@@ -509,7 +511,7 @@ if __name__ == "__main__":
     g_l2.SetLineWidth(2)
     g_l2.SetMarkerColor(ROOT.kBlack)
     g_l2.SetMarkerStyle(20)
-    leg.AddEntry(g_l2, "Linear+Quadratic 95% C.L.", "LP")
+    leg.AddEntry(g_l2, "Linear 95% C.L.", "LP")
 
     g_l3 = ROOT.TH1F("h", "h", 10, 0, 10)
     g_l3.SetLineWidth(1)
@@ -518,7 +520,7 @@ if __name__ == "__main__":
     g_l3.SetMarkerStyle(0)
     g_l3.SetMarkerSize(0)
     g_l3.SetFillColorAlpha(0, 1)
-    leg.AddEntry(g_l3, "Linear 68% C.L.", "F")
+    leg.AddEntry(g_l3, "Linear+Quadratic 68% C.L.  ", "F")
 
     g_l4 = ROOT.TH1F("h2", "h", 10, 0, 10)
     g_l4.SetLineWidth(1)
@@ -527,7 +529,7 @@ if __name__ == "__main__":
     g_l4.SetMarkerStyle(0)
     g_l4.SetMarkerSize(0)
     g_l4.SetFillColorAlpha(ROOT.kBlack, 0.8)
-    leg.AddEntry(g_l4, "Linear 95% C.L.", "F")
+    leg.AddEntry(g_l4, "Linear+Quadratic 95% C.L.", "F")
 
 
     txt1 = []
@@ -541,25 +543,47 @@ if __name__ == "__main__":
 
             name = process 
 
-            g2 = first[op][process]["graph_2s"]
-            g2.SetLineColor(plotting[process]["Color"])
-            g2.SetMarkerColor(plotting[process]["Color"])
-            g2.SetFillColorAlpha(plotting[process]["Color"], 0.5)
-            g1 = first[op][process]["graph_1s"]
-            g1.SetLineColor(plotting[process]["Color"])
-            g1.SetMarkerColor(plotting[process]["Color"])
-            g1.SetFillColor(plotting[process]["Color"])
-            ys.append(first[op][process]['gy'])
+
+            # g2_f = first[op][process]["graph_2s"]
+            # g2_f.SetLineColor(plotting[process]["Color"])
+            # g2_f.SetMarkerColor(plotting[process]["Color"])
+            # g2_f.SetFillColorAlpha(plotting[process]["Color"], 0.5)
+            # g1_f = first[op][process]["graph_1s"]
+            # g1_f.SetLineColor(plotting[process]["Color"])
+            # g1_f.SetMarkerColor(plotting[process]["Color"])
+            # g1_f.SetFillColor(plotting[process]["Color"])
+            # ys.append(first[op][process]['gy'])
+
+            # g2 = first_nq[op][process]["graph_2s"]
+            # g2.SetLineColor(plotting_nq[process]["LineColor"])
+            # #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
+            # g2.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
+            # g1 = first_nq[op][process]["graph_1s"]
+            # g1.SetLineColor(plotting_nq[process]["LineColor"])
+            # #g1_f.SetMarkerColor(plotting_nq[process]["Color"])
+            # g1.SetFillColor(plotting_nq[process]["Color"])
+            # g1.SetFillColorAlpha(0, 1)
+            # ys.append(first_nq[op][process]['gy'])
 
             g2_f = first_nq[op][process]["graph_2s"]
-            g2_f.SetLineColor(plotting_nq[process]["LineColor"])
-            #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
-            g2_f.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
+            g2_f.SetLineColor(plotting[process]["Color"])
+            g2_f.SetMarkerColor(plotting[process]["Color"])
+            g2_f.SetFillColorAlpha(plotting[process]["Color"], 0.5)
             g1_f = first_nq[op][process]["graph_1s"]
-            g1_f.SetLineColor(plotting_nq[process]["LineColor"])
+            g1_f.SetLineColor(plotting[process]["Color"])
+            g1_f.SetMarkerColor(plotting[process]["Color"])
+            g1_f.SetFillColor(plotting[process]["Color"])
+            ys.append(first[op][process]['gy'])
+
+            g2 = first[op][process]["graph_2s"]
+            g2.SetLineColor(plotting_nq[process]["LineColor"])
+            #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
+            g2.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
+            g1 = first[op][process]["graph_1s"]
+            g1.SetLineColor(plotting_nq[process]["LineColor"])
             #g1_f.SetMarkerColor(plotting_nq[process]["Color"])
-            g1_f.SetFillColor(plotting_nq[process]["Color"])
-            g1_f.SetFillColorAlpha(0, 1)
+            g1.SetFillColor(plotting_nq[process]["Color"])
+            g1.SetFillColorAlpha(0, 1)
             ys.append(first_nq[op][process]['gy'])
             """
             if first[op][process]["graph_2s"].GetErrorXhigh(0) < max_x / 20 or first[op][process]["graph_2s"].GetErrorXlow(0) < min_x / 20: 
@@ -598,11 +622,18 @@ if __name__ == "__main__":
             #     leg.AddEntry(g1, "68% {}".format(process), "L")
             #     leg.AddEntry(g2, "95% {}".format(process), "L")
             """
-            g2_f.Draw("2 same")
-            g1_f.Draw("5 same")
+            # g2_f.Draw("2 same")
+            # g1_f.Draw("5 same")
 
-            g2.Draw("P same")
-            g1.Draw("PZ same")
+            # g2.Draw("P same")
+            # g1.Draw("PZ same")
+
+            g2.Draw("2 same")
+            g1.Draw("5 same")
+
+            g2_f.Draw("P same")
+            g1_f.Draw("PZ same")
+
 
             tex_1s = ROOT.TLatex(max_x + 0.6*max_x, first[op][process]['gy'] ,"[{:.2f}({:.2f}),{:.2f}({:.2f})]".format(first[op][process]['1s'][0], first_nq[op][process]['1s'][0], first[op][process]['1s'][1], first_nq[op][process]['1s'][1]))
             tex_1s.SetTextFont(42)
@@ -687,24 +718,46 @@ if __name__ == "__main__":
         ys = []
         for process in second[op]:
             name = process
-            g2 = second[op][process]["graph_2s"]
-            g2.SetLineColor(plotting[process]["Color"])
-            g2.SetMarkerColor(plotting[process]["Color"])
-            g1 = second[op][process]["graph_1s"]
-            g1.SetLineColor(plotting[process]["Color"])
-            g1.SetMarkerColor(plotting[process]["Color"])
-            ys.append(second[op][process]['gy'])
+            # g2 = second[op][process]["graph_2s"]
+            # g2.SetLineColor(plotting[process]["Color"])
+            # g2.SetMarkerColor(plotting[process]["Color"])
+            # g1 = second[op][process]["graph_1s"]
+            # g1.SetLineColor(plotting[process]["Color"])
+            # g1.SetMarkerColor(plotting[process]["Color"])
+            # ys.append(second[op][process]['gy'])
+
+            # g2_f = second_nq[op][process]["graph_2s"]
+            # g2_f.SetLineColor(plotting_nq[process]["LineColor"])
+            # #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
+            # g2_f.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
+            # g1_f = second_nq[op][process]["graph_1s"]
+            # g1_f.SetLineColor(plotting_nq[process]["LineColor"])
+            # #g1_f.SetMarkerColor(plotting_nq[process]["Color"])
+            # g1_f.SetFillColor(plotting_nq[process]["Color"])
+            # g1_f.SetFillColorAlpha(0, 1)
+            # ys.append(second_nq[op][process]['gy'])
 
             g2_f = second_nq[op][process]["graph_2s"]
-            g2_f.SetLineColor(plotting_nq[process]["LineColor"])
-            #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
-            g2_f.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
+            g2_f.SetLineColor(plotting[process]["Color"])
+            g2_f.SetMarkerColor(plotting[process]["Color"])
+            g2_f.SetFillColorAlpha(plotting[process]["Color"], 0.5)
             g1_f = second_nq[op][process]["graph_1s"]
-            g1_f.SetLineColor(plotting_nq[process]["LineColor"])
-            #g1_f.SetMarkerColor(plotting_nq[process]["Color"])
-            g1_f.SetFillColor(plotting_nq[process]["Color"])
-            g1_f.SetFillColorAlpha(0, 1)
+            g1_f.SetLineColor(plotting[process]["Color"])
+            g1_f.SetMarkerColor(plotting[process]["Color"])
+            g1_f.SetFillColor(plotting[process]["Color"])
             ys.append(second_nq[op][process]['gy'])
+
+            g2 = second[op][process]["graph_2s"]
+            g2.SetLineColor(plotting_nq[process]["LineColor"])
+            #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
+            g2.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
+            g1 = second[op][process]["graph_1s"]
+            g1.SetLineColor(plotting_nq[process]["LineColor"])
+            #g1_f.SetMarkerColor(plotting_nq[process]["Color"])
+            g1.SetFillColor(plotting_nq[process]["Color"])
+            g1.SetFillColorAlpha(0, 1)
+            ys.append(second[op][process]['gy'])
+
             """
             if op  != 'cHq1' and second[op][process]["graph_2s"].GetErrorXhigh(0) < max_x / 30 or second[op][process]["graph_2s"].GetErrorXlow(0) < min_x / 30: 
                 name += " #times 25"
@@ -814,11 +867,17 @@ if __name__ == "__main__":
                 g2_f.SetPointError(0, g2_f.GetErrorXlow(0)*0.1, g2_f.GetErrorXhigh(0)*0.1, g2_f.GetErrorYlow(0), g2_f.GetErrorYhigh(0))
                 g1_f.SetPointError(0, g1_f.GetErrorXlow(0)*0.1, g1_f.GetErrorXhigh(0)*0.1, g1_f.GetErrorYlow(0), g1_f.GetErrorYhigh(0))
 
-            g2_f.Draw("2 same")
-            g1_f.Draw("5 same")
+            # g2_f.Draw("2 same")
+            # g1_f.Draw("5 same")
 
-            g2.Draw("P same")
-            g1.Draw("PZ same")
+            # g2.Draw("P same")
+            # g1.Draw("PZ same")
+
+            g2.Draw("2 same")
+            g1.Draw("5 same")
+
+            g2_f.Draw("P same")
+            g1_f.Draw("PZ same")
 
             if op == "cHl1" and process == "WZ":
                 g2_extended_wz.Draw("L same")
@@ -950,24 +1009,46 @@ if __name__ == "__main__":
         ys = []
         for process in third[op]:
             name = process
-            g2 = third[op][process]["graph_2s"]
-            g2.SetLineColor(plotting[process]["Color"])
-            g2.SetMarkerColor(plotting[process]["Color"])
-            g1 = third[op][process]["graph_1s"]
-            g1.SetLineColor(plotting[process]["Color"])
-            g1.SetMarkerColor(plotting[process]["Color"])
-            ys.append(third[op][process]['gy'])
+            # g2 = third[op][process]["graph_2s"]
+            # g2.SetLineColor(plotting[process]["Color"])
+            # g2.SetMarkerColor(plotting[process]["Color"])
+            # g1 = third[op][process]["graph_1s"]
+            # g1.SetLineColor(plotting[process]["Color"])
+            # g1.SetMarkerColor(plotting[process]["Color"])
+            # ys.append(third[op][process]['gy'])
+
+            # g2_f = third_nq[op][process]["graph_2s"]
+            # g2_f.SetLineColor(plotting_nq[process]["LineColor"])
+            # #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
+            # g2_f.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
+            # g1_f = third_nq[op][process]["graph_1s"]
+            # g1_f.SetLineColor(plotting_nq[process]["LineColor"])
+            # #g1_f.SetMarkerColor(plotting_nq[process]["Color"])
+            # g1_f.SetFillColor(plotting_nq[process]["Color"])
+            # g1_f.SetFillColorAlpha(0, 1)
+            # ys.append(third_nq[op][process]['gy'])
 
             g2_f = third_nq[op][process]["graph_2s"]
-            g2_f.SetLineColor(plotting_nq[process]["LineColor"])
-            #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
-            g2_f.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
+            g2_f.SetLineColor(plotting[process]["Color"])
+            g2_f.SetMarkerColor(plotting[process]["Color"])
+            g2_f.SetFillColorAlpha(plotting[process]["Color"], 0.5)
             g1_f = third_nq[op][process]["graph_1s"]
-            g1_f.SetLineColor(plotting_nq[process]["LineColor"])
-            #g1_f.SetMarkerColor(plotting_nq[process]["Color"])
-            g1_f.SetFillColor(plotting_nq[process]["Color"])
-            g1_f.SetFillColorAlpha(0, 1)
+            g1_f.SetLineColor(plotting[process]["Color"])
+            g1_f.SetMarkerColor(plotting[process]["Color"])
+            g1_f.SetFillColor(plotting[process]["Color"])
             ys.append(third_nq[op][process]['gy'])
+
+            g2 = third[op][process]["graph_2s"]
+            g2.SetLineColor(plotting_nq[process]["LineColor"])
+            #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
+            g2.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
+            g1 = third[op][process]["graph_1s"]
+            g1.SetLineColor(plotting_nq[process]["LineColor"])
+            #g1_f.SetMarkerColor(plotting_nq[process]["Color"])
+            g1.SetFillColor(plotting_nq[process]["Color"])
+            g1.SetFillColorAlpha(0, 1)
+            ys.append(third[op][process]['gy'])
+
             """
             if process != 'WZ (EWK)' and third[op][process]["graph_2s"].GetErrorXhigh(0) < max_x / 20 or third[op][process]["graph_2s"].GetErrorXlow(0) < min_x / 20: 
                 name += " #times 20"
@@ -1120,14 +1201,20 @@ if __name__ == "__main__":
                 g2_extended.SetPointError(0, 0, 5.589160623514427, g2.GetErrorYlow(0), g2.GetErrorYhigh(0))
                 g2_extended.SetMarkerSize(0)
  
-            g2_f.Draw("2 same")
-            g1_f.Draw("5 same")
+            # g2_f.Draw("2 same")
+            # g1_f.Draw("5 same")
 
-            g2.Draw("P same")
-            g1.Draw("PZ same")
+            # g2.Draw("P same")
+            # g1.Draw("PZ same")
+
+            g2.Draw("2 same")
+            g1.Draw("5 same")
+
+            g2_f.Draw("P same")
+            g1_f.Draw("PZ same")
 
             if op == "cHDD" and process == "OSWW":
-                g2_extended.Draw("L same")
+                g2_extended.Draw("2 same")
            
             if op == "cHbox" and process == "ZZ":
                tex_1s = ROOT.TLatex(max_x + 0.6*max_x, third[op][process]['gy'] ,"[{:.2f}({}),{:.2f}({})]".format(third[op][process]['1s'][0], ">100", third[op][process]['1s'][1], ">100"))

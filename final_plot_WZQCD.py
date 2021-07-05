@@ -400,8 +400,10 @@ if __name__ == "__main__":
 
     step = len(gd.keys())/2
 
-    AddTgraph(gd)
-    AddTgraphBox(gd_q)
+    #AddTgraph(gd)
+    #AddTgraphBox(gd_q)
+    AddTgraph(gd_q)
+    AddTgraphBox(gd)
 
     first_names = gd.keys()[:5]
     first = OrderedDict()
@@ -436,7 +438,7 @@ if __name__ == "__main__":
 
     pad_fraction = float(step)/len(gd.keys())
 
-    c = ROOT.TCanvas("c", "c", 1100, 1600)
+    c = ROOT.TCanvas("c", "c", 1200, 1700)
     #pad1 = ROOT.TPad("pad1", "20",0.0, 0.0,1.0, 1.0 -2*pad_fraction-0.1805)
     #pad2 = ROOT.TPad("pad2", "20",0.0, 1.0-2*pad_fraction-0.18, 1.0,  1.0 - pad_fraction-0.2705)
     #pad3 = ROOT.TPad("pad3", "20",0.0,1.0-pad_fraction-0.27,1.0, 1)
@@ -497,7 +499,7 @@ if __name__ == "__main__":
     g_l.SetLineWidth(2)
     g_l.SetMarkerColor(ROOT.kBlack)
     g_l.SetMarkerStyle(20)
-    leg.AddEntry(g_l, "Linear+Quadratic 68% C.L.", "LP")
+    leg.AddEntry(g_l, "Linear 68% C.L.", "LP")
 
     g_l2 = ROOT.TGraph()
     g_l2.SetLineColor(ROOT.kBlack)
@@ -505,7 +507,7 @@ if __name__ == "__main__":
     g_l2.SetLineWidth(2)
     g_l2.SetMarkerColor(ROOT.kBlack)
     g_l2.SetMarkerStyle(20)
-    leg.AddEntry(g_l2, "Linear+Quadratic 95% C.L.", "LP")
+    leg.AddEntry(g_l2, "Linear 95% C.L.", "LP")
 
     g_l3 = ROOT.TH1F("h", "h", 10, 0, 10)
     g_l3.SetLineWidth(1)
@@ -514,7 +516,7 @@ if __name__ == "__main__":
     g_l3.SetMarkerStyle(0)
     g_l3.SetMarkerSize(0)
     g_l3.SetFillColorAlpha(0, 1)
-    leg.AddEntry(g_l3, "Linear 68% C.L.", "F")
+    leg.AddEntry(g_l3, "Linear+Quadratic 68% C.L.", "F")
 
     g_l4 = ROOT.TH1F("h2", "h", 10, 0, 10)
     g_l4.SetLineWidth(1)
@@ -523,7 +525,7 @@ if __name__ == "__main__":
     g_l4.SetMarkerStyle(0)
     g_l4.SetMarkerSize(0)
     g_l4.SetFillColorAlpha(ROOT.kBlack, 0.8)
-    leg.AddEntry(g_l4, "Linear 95% C.L.", "F")
+    leg.AddEntry(g_l4, "Linear+Quadratic 95% C.L.", "F")
 
 
     txt1 = []
@@ -537,26 +539,47 @@ if __name__ == "__main__":
 
             name = process 
 
-            g2 = first[op][process]["graph_2s"]
+            # g2 = first[op][process]["graph_2s"]
+            # g2.SetLineColor(plotting[process]["Color"])
+            # g2.SetMarkerColor(plotting[process]["Color"])
+            # g2.SetFillColorAlpha(plotting[process]["Color"], 0.5)
+            # g1 = first[op][process]["graph_1s"]
+            # g1.SetLineColor(plotting[process]["Color"])
+            # g1.SetMarkerColor(plotting[process]["Color"])
+            # g1.SetFillColor(plotting[process]["Color"])
+            # ys.append(first[op][process]['gy'])
+
+            # g2_f = first_nq[op][process]["graph_2s"]
+            # g2_f.SetLineColor(plotting_nq[process]["LineColor"])
+            # #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
+            # g2_f.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
+            # g1_f = first_nq[op][process]["graph_1s"]
+            # g1_f.SetLineColor(plotting_nq[process]["LineColor"])
+            # #g1_f.SetMarkerColor(plotting_nq[process]["Color"])
+            # g1_f.SetFillColor(plotting_nq[process]["Color"])
+            # g1_f.SetFillColorAlpha(0, 1)
+            # ys.append(first_nq[op][process]['gy'])
+
+            g2 = first_nq[op][process]["graph_2s"]
             g2.SetLineColor(plotting[process]["Color"])
             g2.SetMarkerColor(plotting[process]["Color"])
             g2.SetFillColorAlpha(plotting[process]["Color"], 0.5)
-            g1 = first[op][process]["graph_1s"]
+            g1 = first_nq[op][process]["graph_1s"]
             g1.SetLineColor(plotting[process]["Color"])
             g1.SetMarkerColor(plotting[process]["Color"])
             g1.SetFillColor(plotting[process]["Color"])
-            ys.append(first[op][process]['gy'])
+            ys.append(first_nq[op][process]['gy'])
 
-            g2_f = first_nq[op][process]["graph_2s"]
+            g2_f = first[op][process]["graph_2s"]
             g2_f.SetLineColor(plotting_nq[process]["LineColor"])
             #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
             g2_f.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
-            g1_f = first_nq[op][process]["graph_1s"]
+            g1_f = first[op][process]["graph_1s"]
             g1_f.SetLineColor(plotting_nq[process]["LineColor"])
             #g1_f.SetMarkerColor(plotting_nq[process]["Color"])
             g1_f.SetFillColor(plotting_nq[process]["Color"])
             g1_f.SetFillColorAlpha(0, 1)
-            ys.append(first_nq[op][process]['gy'])
+            ys.append(first[op][process]['gy'])
 
             if op == "cHq1":
                 name += " #times 0.1"
@@ -588,7 +611,7 @@ if __name__ == "__main__":
             tex_1s.SetTextSize(0.016)
             tex_1s.SetLineWidth(2)
 
-            tex_2s = ROOT.TLatex(max_x + 1.88*max_x, first[op][process]['gy'] ,"[{:.2f}({:.2f}),{:.2f}({:.2f})]".format(first[op][process]['2s'][0], first_nq[op][process]['2s'][0], first[op][process]['2s'][1], first_nq[op][process]['2s'][1]))
+            tex_2s = ROOT.TLatex(max_x + 1.85*max_x, first[op][process]['gy'] ,"[{:.2f}({:.2f}),{:.2f}({:.2f})]".format(first[op][process]['2s'][0], first_nq[op][process]['2s'][0], first[op][process]['2s'][1], first_nq[op][process]['2s'][1]))
             tex_2s.SetTextFont(42)
             tex_2s.SetTextSize(0.016)
             tex_2s.SetLineWidth(2)
@@ -667,24 +690,44 @@ if __name__ == "__main__":
         ys = []
         for process in second[op]:
             name = process
-            g2 = second[op][process]["graph_2s"]
+            # g2 = second[op][process]["graph_2s"]
+            # g2.SetLineColor(plotting[process]["Color"])
+            # g2.SetMarkerColor(plotting[process]["Color"])
+            # g1 = second[op][process]["graph_1s"]
+            # g1.SetLineColor(plotting[process]["Color"])
+            # g1.SetMarkerColor(plotting[process]["Color"])
+            # ys.append(second[op][process]['gy'])
+
+            # g2_f = second_nq[op][process]["graph_2s"]
+            # g2_f.SetLineColor(plotting_nq[process]["LineColor"])
+            # #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
+            # g2_f.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
+            # g1_f = second_nq[op][process]["graph_1s"]
+            # g1_f.SetLineColor(plotting_nq[process]["LineColor"])
+            # #g1_f.SetMarkerColor(plotting_nq[process]["Color"])
+            # g1_f.SetFillColor(plotting_nq[process]["Color"])
+            # g1_f.SetFillColorAlpha(0, 1)
+            # ys.append(second_nq[op][process]['gy'])
+
+            g2 = second_nq[op][process]["graph_2s"]
             g2.SetLineColor(plotting[process]["Color"])
             g2.SetMarkerColor(plotting[process]["Color"])
-            g1 = second[op][process]["graph_1s"]
+            g1 = second_nq[op][process]["graph_1s"]
             g1.SetLineColor(plotting[process]["Color"])
             g1.SetMarkerColor(plotting[process]["Color"])
-            ys.append(second[op][process]['gy'])
+            ys.append(second_nq[op][process]['gy'])
 
-            g2_f = second_nq[op][process]["graph_2s"]
+            g2_f = second[op][process]["graph_2s"]
             g2_f.SetLineColor(plotting_nq[process]["LineColor"])
             #g2_f.SetMarkerColor(plotting_nq[process]["Color"])
             g2_f.SetFillColorAlpha(plotting_nq[process]["Color"], 0.8)
-            g1_f = second_nq[op][process]["graph_1s"]
+            g1_f = second[op][process]["graph_1s"]
             g1_f.SetLineColor(plotting_nq[process]["LineColor"])
             #g1_f.SetMarkerColor(plotting_nq[process]["Color"])
             g1_f.SetFillColor(plotting_nq[process]["Color"])
             g1_f.SetFillColorAlpha(0, 1)
-            ys.append(second_nq[op][process]['gy'])
+            ys.append(second[op][process]['gy'])
+
             """
             if second[op][process]["graph_2s"].GetErrorXhigh(0) < max_x / 35 or second[op][process]["graph_2s"].GetErrorXlow(0) < min_x / 20: 
                 name += " #times 50"
@@ -722,13 +765,12 @@ if __name__ == "__main__":
                 g1_f.SetPointError(0, g1_f.GetErrorXlow(0)*0.1, g1_f.GetErrorXhigh(0)*0.1, g1_f.GetErrorYlow(0), g1_f.GetErrorYhigh(0))
 
             if op == "cHl1" and process == "WZ":
-                g2_extended_wz = deepcopy(g2)
+                g2_extended_wz = deepcopy(g2_f)
                 x = g2_extended_wz.GetX()
                 #computed offline for second minima
                 x[0] = -17.885
-                g2_extended_wz.SetPointError(0, 0.655, 0.655, g2.GetErrorYlow(0), g2.GetErrorYhigh(0))
+                g2_extended_wz.SetPointError(0, 0.655, 0.655, g2_f.GetErrorYlow(0), g2_f.GetErrorYhigh(0))
                 g2_extended_wz.SetMarkerSize(0)
-                g2_extended_wz.SetLineStyle(7)
             
             if op == "cHW" and process == "WZ":
                 name += " #times 0.5"
@@ -748,21 +790,21 @@ if __name__ == "__main__":
             if op == "cHbox" and process == "WZ":
                 name += " #times 0.5"
                 per = 0.5
-                g2.SetPointError(0, g2.GetErrorXlow(0)*per, g2.GetErrorXhigh(0)*per, g2.GetErrorYlow(0), g2.GetErrorYhigh(0))
-                g1.SetPointError(0, g1.GetErrorXlow(0)*per, g1.GetErrorXhigh(0)*per, g1.GetErrorYlow(0), g1.GetErrorYhigh(0))
-                #g2_f.SetPointError(0, g2_f.GetErrorXlow(0)*per, g2_f.GetErrorXhigh(0)*per, g2_f.GetErrorYlow(0), g2_f.GetErrorYhigh(0))
-                #g1_f.SetPointError(0, g1_f.GetErrorXlow(0)*per, g1_f.GetErrorXhigh(0)*per, g1_f.GetErrorYlow(0), g1_f.GetErrorYhigh(0))
-                g2_f.SetPointError(0, 15, 15, g2_f.GetErrorYlow(0), g2_f.GetErrorYhigh(0))
-                g1_f.SetPointError(0, 15, 15, g1_f.GetErrorYlow(0), g1_f.GetErrorYhigh(0))
+                #g2.SetPointError(0, g2.GetErrorXlow(0)*per, g2.GetErrorXhigh(0)*per, g2.GetErrorYlow(0), g2.GetErrorYhigh(0))
+                #g1.SetPointError(0, g1.GetErrorXlow(0)*per, g1.GetErrorXhigh(0)*per, g1.GetErrorYlow(0), g1.GetErrorYhigh(0))
+                g2_f.SetPointError(0, g2_f.GetErrorXlow(0)*per, g2_f.GetErrorXhigh(0)*per, g2_f.GetErrorYlow(0), g2_f.GetErrorYhigh(0))
+                g1_f.SetPointError(0, g1_f.GetErrorXlow(0)*per, g1_f.GetErrorXhigh(0)*per, g1_f.GetErrorYlow(0), g1_f.GetErrorYhigh(0))
+                g2.SetPointError(0, 15, 15, g2_f.GetErrorYlow(0), g2_f.GetErrorYhigh(0))
+                g1.SetPointError(0, 15, 15, g1_f.GetErrorYlow(0), g1_f.GetErrorYhigh(0))
             if op == "cHbox" and process == "ZZ":
                 name += " #times 0.5"
                 per = 0.5
-                g2.SetPointError(0, g2.GetErrorXlow(0)*per, g2.GetErrorXhigh(0)*per, g2.GetErrorYlow(0), g2.GetErrorYhigh(0))
-                g1.SetPointError(0, g1.GetErrorXlow(0)*per, g1.GetErrorXhigh(0)*per, g1.GetErrorYlow(0), g1.GetErrorYhigh(0))
-                #g2_f.SetPointError(0, g2_f.GetErrorXlow(0)*per, g2_f.GetErrorXhigh(0)*per, g2_f.GetErrorYlow(0), g2_f.GetErrorYhigh(0))
-                #g1_f.SetPointError(0, g1_f.GetErrorXlow(0)*per, g1_f.GetErrorXhigh(0)*per, g1_f.GetErrorYlow(0), g1_f.GetErrorYhigh(0))
-                g2_f.SetPointError(0, 15, 15, g2_f.GetErrorYlow(0), g2_f.GetErrorYhigh(0))
-                g1_f.SetPointError(0, 15, 15, g1_f.GetErrorYlow(0), g1_f.GetErrorYhigh(0))
+                #g2.SetPointError(0, g2.GetErrorXlow(0)*per, g2.GetErrorXhigh(0)*per, g2.GetErrorYlow(0), g2.GetErrorYhigh(0))
+                #g1.SetPointError(0, g1.GetErrorXlow(0)*per, g1.GetErrorXhigh(0)*per, g1.GetErrorYlow(0), g1.GetErrorYhigh(0))
+                g2_f.SetPointError(0, g2_f.GetErrorXlow(0)*per, g2_f.GetErrorXhigh(0)*per, g2_f.GetErrorYlow(0), g2_f.GetErrorYhigh(0))
+                g1_f.SetPointError(0, g1_f.GetErrorXlow(0)*per, g1_f.GetErrorXhigh(0)*per, g1_f.GetErrorYlow(0), g1_f.GetErrorYhigh(0))
+                g2.SetPointError(0, 15, 15, g2_f.GetErrorYlow(0), g2_f.GetErrorYhigh(0))
+                g1.SetPointError(0, 15, 15, g1_f.GetErrorYlow(0), g1_f.GetErrorYhigh(0))
             if op == "cHbox" and process == "SSWW":
                 name += " #times 0.5"
                 per = 0.5
@@ -773,11 +815,11 @@ if __name__ == "__main__":
 
             if op == "cHDD" and process == "OSWW":
                 name += " #times 0.5"
-                g2_extended = deepcopy(g2)
+                g2_extended = deepcopy(g2_f)
                 x = g2_extended.GetX()
                 #computed offline for second minima
                 x[0] = 16.12382028156308
-                g2_extended.SetPointError(0, 0, 5.589160623514427, g2.GetErrorYlow(0), g2.GetErrorYhigh(0))
+                g2_extended.SetPointError(0, 0, 5.589160623514427, g2_f.GetErrorYlow(0), g2_f.GetErrorYhigh(0))
                 g2_extended.SetMarkerSize(0)
 
             g2_f.Draw("2 same")
@@ -787,10 +829,10 @@ if __name__ == "__main__":
             g1.Draw("PZ same")
 
             if op == "cHDD" and process == "OSWW":
-                g2_extended.Draw("L same")
+                g2_extended.Draw("2 same")
 
             if op == "cHl1" and process == "WZ":
-                g2_extended_wz.Draw("L same")
+                g2_extended_wz.Draw("2 same")
             
             if op == "cHbox" and process == "WZ":
                tex_1s = ROOT.TLatex(max_x + 0.6*max_x, second[op][process]['gy'] ,"[{:.2g}({}),{:.2g}({})]".format(second[op][process]['1s'][0], ">100", second[op][process]['1s'][1], ">100"))
@@ -798,7 +840,7 @@ if __name__ == "__main__":
                tex_1s.SetTextSize(0.02)
                tex_1s.SetLineWidth(2)
 
-               tex_2s = ROOT.TLatex(max_x + 1.88*max_x, second[op][process]['gy'] ,"[{:.2g}({}),{:.2g}({})]".format(second[op][process]['2s'][0], ">100", second[op][process]['2s'][1], ">100"))
+               tex_2s = ROOT.TLatex(max_x + 1.85*max_x, second[op][process]['gy'] ,"[{:.2g}({}),{:.2g}({})]".format(second[op][process]['2s'][0], ">100", second[op][process]['2s'][1], ">100"))
                tex_2s.SetTextFont(42)
                tex_2s.SetTextSize(0.02)
                tex_2s.SetLineWidth(2)
@@ -808,7 +850,7 @@ if __name__ == "__main__":
                tex_1s.SetTextSize(0.02)
                tex_1s.SetLineWidth(2)
 
-               tex_2s = ROOT.TLatex(max_x + 1.88*max_x, second[op][process]['gy'] ,"[{:.2g}({}),{:.2g}({})]".format(second[op][process]['2s'][0], ">100", second[op][process]['2s'][1], ">100"))
+               tex_2s = ROOT.TLatex(max_x + 1.85*max_x, second[op][process]['gy'] ,"[{:.2g}({}),{:.2g}({})]".format(second[op][process]['2s'][0], ">100", second[op][process]['2s'][1], ">100"))
                tex_2s.SetTextFont(42)
                tex_2s.SetTextSize(0.02)
                tex_2s.SetLineWidth(2)
@@ -818,7 +860,7 @@ if __name__ == "__main__":
                tex_1s.SetTextSize(0.02)
                tex_1s.SetLineWidth(2)
 
-               tex_2s = ROOT.TLatex(max_x + 1.88*max_x, second[op][process]['gy'] ,"[{:.2g}({}),{:.2g}({})]".format(second[op][process]['2s'][0], ">100", second[op][process]['2s'][1], ">100"))
+               tex_2s = ROOT.TLatex(max_x + 1.85*max_x, second[op][process]['gy'] ,"[{:.2g}({}),{:.2g}({})]".format(second[op][process]['2s'][0], ">100", second[op][process]['2s'][1], ">100"))
                tex_2s.SetTextFont(42)
                tex_2s.SetTextSize(0.02)
                tex_2s.SetLineWidth(2)
@@ -828,7 +870,7 @@ if __name__ == "__main__":
                tex_1s.SetTextSize(0.02)
                tex_1s.SetLineWidth(2)
 
-               tex_2s = ROOT.TLatex(max_x + 1.88*max_x, second[op][process]['gy'] ,"[{:.2g}({}),{:.2g}({})]".format(second[op][process]['2s'][0], ">100", second[op][process]['2s'][1], ">100"))
+               tex_2s = ROOT.TLatex(max_x + 1.85*max_x, second[op][process]['gy'] ,"[{:.2g}({}),{:.2g}({})]".format(second[op][process]['2s'][0], ">100", second[op][process]['2s'][1], ">100"))
                tex_2s.SetTextFont(42)
                tex_2s.SetTextSize(0.02)
                tex_2s.SetLineWidth(2)
@@ -838,7 +880,7 @@ if __name__ == "__main__":
                tex_1s.SetTextSize(0.02)
                tex_1s.SetLineWidth(2)
 
-               tex_2s = ROOT.TLatex(max_x + 1.88*max_x, second[op][process]['gy'] ,"[{:.2g}({}),{:.2g}({})]".format(second[op][process]['2s'][0], int(second_nq[op][process]['2s'][0]), second[op][process]['2s'][1], int(second_nq[op][process]['2s'][1])))
+               tex_2s = ROOT.TLatex(max_x + 1.85*max_x, second[op][process]['gy'] ,"[{:.2g}({}),{:.2g}({})]".format(second[op][process]['2s'][0], int(second_nq[op][process]['2s'][0]), second[op][process]['2s'][1], int(second_nq[op][process]['2s'][1])))
                tex_2s.SetTextFont(42)
                tex_2s.SetTextSize(0.02)
                tex_2s.SetLineWidth(2)
@@ -849,7 +891,7 @@ if __name__ == "__main__":
                tex_1s.SetTextSize(0.02)
                tex_1s.SetLineWidth(2)
             
-               tex_2s = ROOT.TLatex(max_x + 1.88*max_x, second[op][process]['gy'] ,"[-18,-17],[{:.2f}({:.2f}),{:.2f}({:.2f})]".format(second[op][process]['2s'][0], second_nq[op][process]['2s'][0], second[op][process]['2s'][1], second_nq[op][process]['2s'][1]))
+               tex_2s = ROOT.TLatex(max_x + 1.85*max_x, second[op][process]['gy'] ,"[-18,-17],[{:.2f}({:.2f}),{:.2f}({:.2f})]".format(second[op][process]['2s'][0], second_nq[op][process]['2s'][0], second[op][process]['2s'][1], second_nq[op][process]['2s'][1]))
                tex_2s.SetTextFont(42)
                tex_2s.SetTextSize(0.02)
                tex_2s.SetLineWidth(2)
@@ -861,7 +903,7 @@ if __name__ == "__main__":
                tex_1s.SetTextSize(0.02)
                tex_1s.SetLineWidth(2)
 
-               tex_2s = ROOT.TLatex(max_x + 1.88*max_x, second[op][process]['gy'] ,"[{:.2g}({:.2g}),{:.2g}({:.2g})],[16.1,22.7]".format(second[op][process]['2s'][0], second_nq[op][process]['2s'][0], second[op][process]['2s'][1], second_nq[op][process]['2s'][1]))
+               tex_2s = ROOT.TLatex(max_x + 1.85*max_x, second[op][process]['gy'] ,"[{:.2g}({:.2g}),{:.2g}({:.2g})],[16.1,22.7]".format(second[op][process]['2s'][0], second_nq[op][process]['2s'][0], second[op][process]['2s'][1], second_nq[op][process]['2s'][1]))
                tex_2s.SetTextFont(42)
                tex_2s.SetTextSize(0.02)
                tex_2s.SetLineWidth(2)
@@ -872,7 +914,7 @@ if __name__ == "__main__":
                tex_1s.SetTextSize(0.02)
                tex_1s.SetLineWidth(2)
 
-               tex_2s = ROOT.TLatex(max_x + 1.88*max_x, second[op][process]['gy'] ,"[{:.2g}({:.2g}),{:.2g}({:.2g})]".format(second[op][process]['2s'][0], second_nq[op][process]['2s'][0], second[op][process]['2s'][1], second_nq[op][process]['2s'][1]))
+               tex_2s = ROOT.TLatex(max_x + 1.85*max_x, second[op][process]['gy'] ,"[{:.2g}({:.2g}),{:.2g}({:.2g})]".format(second[op][process]['2s'][0], second_nq[op][process]['2s'][0], second[op][process]['2s'][1], second_nq[op][process]['2s'][1]))
                tex_2s.SetTextFont(42)
                tex_2s.SetTextSize(0.02)
                tex_2s.SetLineWidth(2)
@@ -1027,7 +1069,7 @@ if __name__ == "__main__":
     tex5.Draw()
 
     #tex6 = ROOT.TLatex(0.85,.79, "2#sigma")
-    tex6 = ROOT.TLatex(0.845,.84, "95% L+Q (L)")
+    tex6 = ROOT.TLatex(0.84,.84, "95% L+Q (L)")
     tex6.SetNDC()
     tex6.SetTextAlign(31)
     tex6.SetTextFont(42)

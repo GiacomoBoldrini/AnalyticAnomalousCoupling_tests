@@ -52,7 +52,9 @@ def ConvertProc(proc):
         "inWW": "W^{#pm}W^{#mp}+0j",
         "WW": "W^{#pm}W^{#mp}+0j",
         "ZZ": "ZZ+2j",
+        "ZZ2e2mu_ZZ2e2muQCD": "ZZ+2j",
         "ZV": "ZV+2j",
+        "ZV_ZVQCD": "ZV+2j",
         "combined": "Combined",
     }
 

@@ -525,10 +525,6 @@ if __name__ == '__main__':
                     h_err = deepcopy(h_sm)
                     h_err.Add(h_smqcd)
 
-                if var_n == "mjj":
-                    for i in range(h_err.GetNbinsX()):
-                            print(h_err.GetBinError(i))
-                    
                 h_err.SetMarkerSize(0)
                 h_err.SetFillColor(ROOT.kBlack)
                 h_err.SetFillStyle(3004)

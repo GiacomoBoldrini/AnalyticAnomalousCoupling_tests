@@ -1,10 +1,11 @@
 from collections import OrderedDict 
-
+from glob import glob
 
 operators = OrderedDict()
 
 
 is_combo = True
+
 
 operators['cHq3_cHW'] = OrderedDict()
 operators['cHq3_cHW']['SSWW']  = OrderedDict()
@@ -1327,7 +1328,6 @@ operators['cqq1_cHl1']['combined']['path'] =  '/afs/cern.ch/work/g/gboldrin/publ
 operators['cqq1_cHl1']['combined']['color'] =  '1'
 operators['cqq1_cHl1']['combined']['linestyle'] =  '1'
 
-
 operators['cqq1_cHl3'] = OrderedDict()
 operators['cqq1_cHl3']['SSWW']  = OrderedDict()
 operators['cqq1_cHl3']['SSWW']['path'] =  '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD/bestFits_2D/SSWW_2op_best/to_Latinos_SSWW_cqq1_cHl3/EFTNeg/datacards/SSWW_cqq1_cHl3/ptj1/higgsCombineTest.MultiDimFit.mH125.root'
@@ -2464,457 +2464,468 @@ operators['cqq11_cHbox']['combined']['linestyle'] =  '1'
 """
     New portion with the new results without the quadratic
 """
+
+
 operators['cqq11_cW']['combined_noq']  = OrderedDict()
 operators['cqq11_cW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cW/deltaphijj_met_ptj2_mee_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq11_cW']['combined_noq']['color'] =  '1'
-operators['cqq11_cW']['combined_noq']['linestyle'] =  '7'
+operators['cqq11_cW']['combined_noq']['linestyle'] =  '2'
 
 operators['cHq3_cHW']['combined_noq']  = OrderedDict()
 operators['cHq3_cHW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq3_cHW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq3_cHW/deltaphijj_ptl2_mjj_deltaphijj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHq3_cHW']['combined_noq']['color'] =  '1'
-operators['cHq3_cHW']['combined_noq']['linestyle'] =  '7'
+operators['cHq3_cHW']['combined_noq']['linestyle'] =  '2'
 
 operators['cW_cHW']['combined_noq']  = OrderedDict()
 operators['cW_cHW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHW/deltaphijj_ptl2_mjj_deltaphijj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cW_cHW']['combined_noq']['color'] =  '1'
-operators['cW_cHW']['combined_noq']['linestyle'] =  '7'
+operators['cW_cHW']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq31_cHl3']['combined_noq']  = OrderedDict()
 operators['cqq31_cHl3']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHl3/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHl3/ptj2_mll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq31_cHl3']['combined_noq']['color'] =  '1'
-operators['cqq31_cHl3']['combined_noq']['linestyle'] =  '7'
+operators['cqq31_cHl3']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq31_cHl1']['combined_noq']  = OrderedDict()
 operators['cqq31_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHl1/ptj2_ptll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq31_cHl1']['combined_noq']['color'] =  '1'
-operators['cqq31_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cqq31_cHl1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHq1_cHbox']['combined_noq']  = OrderedDict()
 operators['cHq1_cHbox']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq1_cHbox/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq1_cHbox/etal1_met_etal1_mee_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHq1_cHbox']['combined_noq']['color'] =  '1'
-operators['cHq1_cHbox']['combined_noq']['linestyle'] =  '7'
+operators['cHq1_cHbox']['combined_noq']['linestyle'] =  '2'
 
 operators['cll1_cHq1']['combined_noq']  = OrderedDict()
 operators['cll1_cHq1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHq1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHq1/etal1_met_mjj_mjj_mjj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cll1_cHq1']['combined_noq']['color'] =  '1'
-operators['cll1_cHq1']['combined_noq']['linestyle'] =  '7'
+operators['cll1_cHq1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHq1_cHDD']['combined_noq']  = OrderedDict()
 operators['cHq1_cHDD']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq1_cHDD/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq1_cHDD/ptj1_met_ptemuplus_mee_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHq1_cHDD']['combined_noq']['color'] =  '1'
-operators['cHq1_cHDD']['combined_noq']['linestyle'] =  '7'
+operators['cHq1_cHDD']['combined_noq']['linestyle'] =  '2'
 
 operators['cll1_cHq3']['combined_noq']  = OrderedDict()
 operators['cll1_cHq3']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHq3/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHq3/deltaphijj_ptl2_deltaphijj_deltaphijj_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cll1_cHq3']['combined_noq']['color'] =  '1'
-operators['cll1_cHq3']['combined_noq']['linestyle'] =  '7'
+operators['cll1_cHq3']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cqq11']['combined_noq']  = OrderedDict()
 operators['cqq3_cqq11']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cqq11/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cqq11/ptj2_ptll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cqq11']['combined_noq']['color'] =  '1'
-operators['cqq3_cqq11']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cqq11']['combined_noq']['linestyle'] =  '2'
 
 operators['cll1_cHW']['combined_noq']  = OrderedDict()
 operators['cll1_cHW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHW/deltaphijj_mll_mjj_mjj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cll1_cHW']['combined_noq']['color'] =  '1'
-operators['cll1_cHW']['combined_noq']['linestyle'] =  '7'
+operators['cll1_cHW']['combined_noq']['linestyle'] =  '2'
 
 operators['cHq1_cHWB']['combined_noq']  = OrderedDict()
 operators['cHq1_cHWB']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq1_cHWB/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq1_cHWB/ptj1_met_mjj_mjj_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHq1_cHWB']['combined_noq']['color'] =  '1'
-operators['cHq1_cHWB']['combined_noq']['linestyle'] =  '7'
+operators['cHq1_cHWB']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq31_cHW']['combined_noq']  = OrderedDict()
 operators['cqq31_cHW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHW/ptj2_mll_ptj2_ptj2_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq31_cHW']['combined_noq']['color'] =  '1'
-operators['cqq31_cHW']['combined_noq']['linestyle'] =  '7'
+operators['cqq31_cHW']['combined_noq']['linestyle'] =  '2'
 
 operators['cW_cHDD']['combined_noq']  = OrderedDict()
 operators['cW_cHDD']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHDD/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHDD/deltaphijj_met_ptemuplus_mee_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cW_cHDD']['combined_noq']['color'] =  '1'
-operators['cW_cHDD']['combined_noq']['linestyle'] =  '7'
+operators['cW_cHDD']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq31_cqq1']['combined_noq']  = OrderedDict()
 operators['cqq31_cqq1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cqq1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cqq1/ptj2_ptll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq31_cqq1']['combined_noq']['color'] =  '1'
-operators['cqq31_cqq1']['combined_noq']['linestyle'] =  '7'
+operators['cqq31_cqq1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHq3_cHl1']['combined_noq']  = OrderedDict()
 operators['cHq3_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq3_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq3_cHl1/ptl2_ptl2_deltaphijj_deltaphijj_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHq3_cHl1']['combined_noq']['color'] =  '1'
-operators['cHq3_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cHq3_cHl1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHq3_cHDD']['combined_noq']  = OrderedDict()
 operators['cHq3_cHDD']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq3_cHDD/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq3_cHDD/deltaphijj_met_ptemuplus_mee_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHq3_cHDD']['combined_noq']['color'] =  '1'
-operators['cHq3_cHDD']['combined_noq']['linestyle'] =  '7'
+operators['cHq3_cHDD']['combined_noq']['linestyle'] =  '2'
 
 operators['cHDD_cHl1']['combined_noq']  = OrderedDict()
 operators['cHDD_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHDD_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHDD_cHl1/ptj1_met_ptemuplus_mee_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHDD_cHl1']['combined_noq']['color'] =  '1'
-operators['cHDD_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cHDD_cHl1']['combined_noq']['linestyle'] =  '2'
 
 operators['cW_cHl1']['combined_noq']  = OrderedDict()
 operators['cW_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHl1/deltaphijj_met_mjj_deltaphijj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cW_cHl1']['combined_noq']['color'] =  '1'
-operators['cW_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cW_cHl1']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq31_cqq11']['combined_noq']  = OrderedDict()
 operators['cqq31_cqq11']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cqq11/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cqq11/ptj2_ptll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq31_cqq11']['combined_noq']['color'] =  '1'
-operators['cqq31_cqq11']['combined_noq']['linestyle'] =  '7'
+operators['cqq31_cqq11']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq11_cHq3']['combined_noq']  = OrderedDict()
 operators['cqq11_cHq3']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHq3/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHq3/ptj2_ptll_mjj_mjj_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq11_cHq3']['combined_noq']['color'] =  '1'
-operators['cqq11_cHq3']['combined_noq']['linestyle'] =  '7'
+operators['cqq11_cHq3']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq11_cHq1']['combined_noq']  = OrderedDict()
 operators['cqq11_cHq1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHq1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHq1/ptj2_met_etal1_mjj_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq11_cHq1']['combined_noq']['color'] =  '1'
-operators['cqq11_cHq1']['combined_noq']['linestyle'] =  '7'
+operators['cqq11_cHq1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHDD_cHbox']['combined_noq']  = OrderedDict()
 operators['cHDD_cHbox']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHDD_cHbox/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHDD_cHbox/ptj1_met_ptemuplus_deltaetajj_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHDD_cHbox']['combined_noq']['color'] =  '1'
-operators['cHDD_cHbox']['combined_noq']['linestyle'] =  '7'
+operators['cHDD_cHbox']['combined_noq']['linestyle'] =  '2'
 
 operators['cHl3_cHW']['combined_noq']  = OrderedDict()
 operators['cHl3_cHW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHW/deltaphijj_mll_mjj_mjj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHl3_cHW']['combined_noq']['color'] =  '1'
-operators['cHl3_cHW']['combined_noq']['linestyle'] =  '7'
+operators['cHl3_cHW']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cHq1']['combined_noq']  = OrderedDict()
 operators['cqq3_cHq1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHq1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHq1/ptj2_met_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cHq1']['combined_noq']['color'] =  '1'
-operators['cqq3_cHq1']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cHq1']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq31_cll1']['combined_noq']  = OrderedDict()
 operators['cqq31_cll1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cll1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cll1/ptj2_met_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq31_cll1']['combined_noq']['color'] =  '1'
-operators['cqq31_cll1']['combined_noq']['linestyle'] =  '7'
+operators['cqq31_cll1']['combined_noq']['linestyle'] =  '2'
 
 operators['cW_cHbox']['combined_noq']  = OrderedDict()
 operators['cW_cHbox']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHbox/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHbox/deltaphijj_met_etal1_mee_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cW_cHbox']['combined_noq']['color'] =  '1'
-operators['cW_cHbox']['combined_noq']['linestyle'] =  '7'
+operators['cW_cHbox']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cHq3']['combined_noq']  = OrderedDict()
 operators['cqq3_cHq3']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHq3/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHq3/ptj1_ptll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cHq3']['combined_noq']['color'] =  '1'
-operators['cqq3_cHq3']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cHq3']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq1_cHq3']['combined_noq']  = OrderedDict()
 operators['cqq1_cHq3']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHq3/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHq3/ptj2_ptll_mjj_mjj_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq1_cHq3']['combined_noq']['color'] =  '1'
-operators['cqq1_cHq3']['combined_noq']['linestyle'] =  '7'
+operators['cqq1_cHq3']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq1_cHq1']['combined_noq']  = OrderedDict()
 operators['cqq1_cHq1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHq1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHq1/ptj2_met_etal1_mjj_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq1_cHq1']['combined_noq']['color'] =  '1'
-operators['cqq1_cHq1']['combined_noq']['linestyle'] =  '7'
+operators['cqq1_cHq1']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq1_cHWB']['combined_noq']  = OrderedDict()
 operators['cqq1_cHWB']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHWB/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHWB/ptj2_ptll_mjj_mee_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq1_cHWB']['combined_noq']['color'] =  '1'
-operators['cqq1_cHWB']['combined_noq']['linestyle'] =  '7'
+operators['cqq1_cHWB']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cHW']['combined_noq']  = OrderedDict()
 operators['cqq3_cHW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHW/ptj2_mll_ptj2_ptj2_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cHW']['combined_noq']['color'] =  '1'
-operators['cqq3_cHW']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cHW']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq31_cHWB']['combined_noq']  = OrderedDict()
 operators['cqq31_cHWB']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHWB/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHWB/ptj2_ptll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq31_cHWB']['combined_noq']['color'] =  '1'
-operators['cqq31_cHWB']['combined_noq']['linestyle'] =  '7'
+operators['cqq31_cHWB']['combined_noq']['linestyle'] =  '2'
 
 operators['cHl3_cHWB']['combined_noq']  = OrderedDict()
 operators['cHl3_cHWB']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHWB/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHWB/ptj1_met_ptemuminus_mee_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHl3_cHWB']['combined_noq']['color'] =  '1'
-operators['cHl3_cHWB']['combined_noq']['linestyle'] =  '7'
+operators['cHl3_cHWB']['combined_noq']['linestyle'] =  '2'
 
 operators['cll1_cHWB']['combined_noq']  = OrderedDict()
 operators['cll1_cHWB']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHWB/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHWB/ptj1_met_ptemuminus_mee_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cll1_cHWB']['combined_noq']['color'] =  '1'
-operators['cll1_cHWB']['combined_noq']['linestyle'] =  '7'
+operators['cll1_cHWB']['combined_noq']['linestyle'] =  '2'
 
 operators['cHq1_cHW']['combined_noq']  = OrderedDict()
 operators['cHq1_cHW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq1_cHW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq1_cHW/deltaphijj_ptl2_mjj_mjj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHq1_cHW']['combined_noq']['color'] =  '1'
-operators['cHq1_cHW']['combined_noq']['linestyle'] =  '7'
+operators['cHq1_cHW']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cqq31']['combined_noq']  = OrderedDict()
 operators['cqq3_cqq31']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cqq31/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cqq31/ptj2_ptll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cqq31']['combined_noq']['color'] =  '1'
-operators['cqq3_cqq31']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cqq31']['combined_noq']['linestyle'] =  '2'
 
 operators['cll1_cHDD']['combined_noq']  = OrderedDict()
 operators['cll1_cHDD']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHDD/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHDD/ptj1_met_ptemuplus_mee_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cll1_cHDD']['combined_noq']['color'] =  '1'
-operators['cll1_cHDD']['combined_noq']['linestyle'] =  '7'
+operators['cll1_cHDD']['combined_noq']['linestyle'] =  '2'
 
 operators['cW_cHWB']['combined_noq']  = OrderedDict()
 operators['cW_cHWB']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHWB/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHWB/deltaphijj_met_mjj_mee_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cW_cHWB']['combined_noq']['color'] =  '1'
-operators['cW_cHWB']['combined_noq']['linestyle'] =  '7'
+operators['cW_cHWB']['combined_noq']['linestyle'] =  '2'
 
 operators['cll1_cHl1']['combined_noq']  = OrderedDict()
 operators['cll1_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHl1/etal1_met_etal1_mee_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cll1_cHl1']['combined_noq']['color'] =  '1'
-operators['cll1_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cll1_cHl1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHWB_cHl1']['combined_noq']  = OrderedDict()
 operators['cHWB_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHWB_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHWB_cHl1/ptj1_ptll_ptemuminus_mjj_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHWB_cHl1']['combined_noq']['color'] =  '1'
-operators['cHWB_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cHWB_cHl1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHl3_cHq3']['combined_noq']  = OrderedDict()
 operators['cHl3_cHq3']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHq3/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHq3/deltaphijj_ptl2_deltaphijj_deltaphijj_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHl3_cHq3']['combined_noq']['color'] =  '1'
-operators['cHl3_cHq3']['combined_noq']['linestyle'] =  '7'
+operators['cHl3_cHq3']['combined_noq']['linestyle'] =  '2'
 
 operators['cHl3_cHq1']['combined_noq']  = OrderedDict()
 operators['cHl3_cHq1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHq1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHq1/etal1_met_mjj_mjj_mjj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHl3_cHq1']['combined_noq']['color'] =  '1'
-operators['cHl3_cHq1']['combined_noq']['linestyle'] =  '7'
+operators['cHl3_cHq1']['combined_noq']['linestyle'] =  '2'
 
 operators['cll1_cHbox']['combined_noq']  = OrderedDict()
 operators['cll1_cHbox']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHbox/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cll1_cHbox/etal1_met_etal1_mee_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cll1_cHbox']['combined_noq']['color'] =  '1'
-operators['cll1_cHbox']['combined_noq']['linestyle'] =  '7'
+operators['cll1_cHbox']['combined_noq']['linestyle'] =  '2'
 
 operators['cHq3_cHq1']['combined_noq']  = OrderedDict()
 operators['cHq3_cHq1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq3_cHq1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq3_cHq1/deltaphijj_met_mjj_mjj_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHq3_cHq1']['combined_noq']['color'] =  '1'
-operators['cHq3_cHq1']['combined_noq']['linestyle'] =  '7'
+operators['cHq3_cHq1']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq31_cW']['combined_noq']  = OrderedDict()
 operators['cqq31_cW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cW/deltaphijj_met_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq31_cW']['combined_noq']['color'] =  '1'
-operators['cqq31_cW']['combined_noq']['linestyle'] =  '7'
+operators['cqq31_cW']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq31_cHq1']['combined_noq']  = OrderedDict()
 operators['cqq31_cHq1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHq1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHq1/ptj2_met_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq31_cHq1']['combined_noq']['color'] =  '1'
-operators['cqq31_cHq1']['combined_noq']['linestyle'] =  '7'
+operators['cqq31_cHq1']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq31_cHq3']['combined_noq']  = OrderedDict()
 operators['cqq31_cHq3']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHq3/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHq3/ptj2_ptll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq31_cHq3']['combined_noq']['color'] =  '1'
-operators['cqq31_cHq3']['combined_noq']['linestyle'] =  '7'
+operators['cqq31_cHq3']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq1_cHl1']['combined_noq']  = OrderedDict()
 operators['cqq1_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHl1/ptj2_ptll_mjj_mjj_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq1_cHl1']['combined_noq']['color'] =  '1'
-operators['cqq1_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cqq1_cHl1']['combined_noq']['linestyle'] =  '2'
+
 
 operators['cqq1_cHl3']['combined_noq']  = OrderedDict()
 operators['cqq1_cHl3']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHl3/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHl3/ptj2_mll_mjj_mjj_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq1_cHl3']['combined_noq']['color'] =  '1'
-operators['cqq1_cHl3']['combined_noq']['linestyle'] =  '7'
+operators['cqq1_cHl3']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq31_cHbox']['combined_noq']  = OrderedDict()
 operators['cqq31_cHbox']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHbox/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHbox/ptj2_met_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq31_cHbox']['combined_noq']['color'] =  '1'
-operators['cqq31_cHbox']['combined_noq']['linestyle'] =  '7'
+operators['cqq31_cHbox']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cHl3']['combined_noq']  = OrderedDict()
 operators['cqq3_cHl3']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHl3/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHl3/ptj2_mll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cHl3']['combined_noq']['color'] =  '1'
-operators['cqq3_cHl3']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cHl3']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cHl1']['combined_noq']  = OrderedDict()
 operators['cqq3_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHl1/ptj2_ptll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cHl1']['combined_noq']['color'] =  '1'
-operators['cqq3_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cHl1']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq1_cHDD']['combined_noq']  = OrderedDict()
 operators['cqq1_cHDD']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHDD/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHDD/ptj2_met_ptemuplus_deltaetajj_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq1_cHDD']['combined_noq']['color'] =  '1'
-operators['cqq1_cHDD']['combined_noq']['linestyle'] =  '7'
+operators['cqq1_cHDD']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq11_cHW']['combined_noq']  = OrderedDict()
 operators['cqq11_cHW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHW/ptj2_mll_mjj_mjj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq11_cHW']['combined_noq']['color'] =  '1'
-operators['cqq11_cHW']['combined_noq']['linestyle'] =  '7'
+operators['cqq11_cHW']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq1_cll1']['combined_noq']  = OrderedDict()
 operators['cqq1_cll1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cll1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cll1/ptj2_met_ptj2_mjj_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq1_cll1']['combined_noq']['color'] =  '1'
-operators['cqq1_cll1']['combined_noq']['linestyle'] =  '7'
+operators['cqq1_cll1']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cll1']['combined_noq']  = OrderedDict()
 operators['cqq3_cll1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cll1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cll1/ptj2_met_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cll1']['combined_noq']['color'] =  '1'
-operators['cqq3_cll1']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cll1']['combined_noq']['linestyle'] =  '2'
 
 operators['cW_cll1']['combined_noq']  = OrderedDict()
 operators['cW_cll1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cll1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cll1/deltaphijj_met_etal1_deltaphijj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cW_cll1']['combined_noq']['color'] =  '1'
-operators['cW_cll1']['combined_noq']['linestyle'] =  '7'
+operators['cW_cll1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHW_cHbox']['combined_noq']  = OrderedDict()
 operators['cHW_cHbox']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHW_cHbox/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHW_cHbox/deltaphijj_mll_mjj_mjj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHW_cHbox']['combined_noq']['color'] =  '1'
-operators['cHW_cHbox']['combined_noq']['linestyle'] =  '7'
+operators['cHW_cHbox']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq11_cHDD']['combined_noq']  = OrderedDict()
 operators['cqq11_cHDD']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHDD/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHDD/ptj2_met_ptemuplus_deltaetajj_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq11_cHDD']['combined_noq']['color'] =  '1'
-operators['cqq11_cHDD']['combined_noq']['linestyle'] =  '7'
+operators['cqq11_cHDD']['combined_noq']['linestyle'] =  '2'
 
 operators['cHq3_cHbox']['combined_noq']  = OrderedDict()
 operators['cHq3_cHbox']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq3_cHbox/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq3_cHbox/deltaphijj_met_deltaphijj_mjj_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHq3_cHbox']['combined_noq']['color'] =  '1'
-operators['cHq3_cHbox']['combined_noq']['linestyle'] =  '7'
+operators['cHq3_cHbox']['combined_noq']['linestyle'] =  '2'
 
 operators['cHq3_cHWB']['combined_noq']  = OrderedDict()
 operators['cHq3_cHWB']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq3_cHWB/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq3_cHWB/deltaphijj_ptl2_ptemuplus_mjj_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHq3_cHWB']['combined_noq']['color'] =  '1'
-operators['cHq3_cHWB']['combined_noq']['linestyle'] =  '7'
+operators['cHq3_cHWB']['combined_noq']['linestyle'] =  '2'
 
 operators['cHDD_cHWB']['combined_noq']  = OrderedDict()
 operators['cHDD_cHWB']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHDD_cHWB/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHDD_cHWB/ptj1_met_ptemuplus_mee_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHDD_cHWB']['combined_noq']['color'] =  '1'
-operators['cHDD_cHWB']['combined_noq']['linestyle'] =  '7'
+operators['cHDD_cHWB']['combined_noq']['linestyle'] =  '2'
 
 operators['cHl3_cW']['combined_noq']  = OrderedDict()
 operators['cHl3_cW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cW/deltaphijj_met_mjj_deltaphijj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHl3_cW']['combined_noq']['color'] =  '1'
-operators['cHl3_cW']['combined_noq']['linestyle'] =  '7'
+operators['cHl3_cW']['combined_noq']['linestyle'] =  '2'
 
 operators['cHW_cHWB']['combined_noq']  = OrderedDict()
 operators['cHW_cHWB']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHW_cHWB/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHW_cHWB/deltaphijj_ptl2_mjj_mjj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHW_cHWB']['combined_noq']['color'] =  '1'
-operators['cHW_cHWB']['combined_noq']['linestyle'] =  '7'
+operators['cHW_cHWB']['combined_noq']['linestyle'] =  '2'
 
 operators['cHW_cHl1']['combined_noq']  = OrderedDict()
 operators['cHW_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHW_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHW_cHl1/deltaphijj_mll_deltaphijj_mjj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHW_cHl1']['combined_noq']['color'] =  '1'
-operators['cHW_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cHW_cHl1']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cHWB']['combined_noq']  = OrderedDict()
 operators['cqq3_cHWB']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHWB/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHWB/ptj2_ptll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cHWB']['combined_noq']['color'] =  '1'
-operators['cqq3_cHWB']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cHWB']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cqq1']['combined_noq']  = OrderedDict()
 operators['cqq3_cqq1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cqq1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cqq1/ptj2_ptll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cqq1']['combined_noq']['color'] =  '1'
-operators['cqq3_cqq1']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cqq1']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cHDD']['combined_noq']  = OrderedDict()
 operators['cqq3_cHDD']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHDD/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHDD/ptj2_met_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cHDD']['combined_noq']['color'] =  '1'
-operators['cqq3_cHDD']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cHDD']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq1_cHW']['combined_noq']  = OrderedDict()
 operators['cqq1_cHW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cHW/ptj2_mll_mjj_mjj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq1_cHW']['combined_noq']['color'] =  '1'
-operators['cqq1_cHW']['combined_noq']['linestyle'] =  '7'
+operators['cqq1_cHW']['combined_noq']['linestyle'] =  '2'
 
 operators['cHW_cHDD']['combined_noq']  = OrderedDict()
 operators['cHW_cHDD']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHW_cHDD/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHW_cHDD/deltaphijj_mll_ptemuplus_deltaetajj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHW_cHDD']['combined_noq']['color'] =  '1'
-operators['cHW_cHDD']['combined_noq']['linestyle'] =  '7'
+operators['cHW_cHDD']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq1_cqq11']['combined_noq']  = OrderedDict()
 operators['cqq1_cqq11']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cqq11/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cqq11/ptj2_ptll_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq1_cqq11']['combined_noq']['color'] =  '1'
-operators['cqq1_cqq11']['combined_noq']['linestyle'] =  '7'
+operators['cqq1_cqq11']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cHbox']['combined_noq']  = OrderedDict()
 operators['cqq3_cHbox']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHbox/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cHbox/ptj2_met_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cHbox']['combined_noq']['color'] =  '1'
-operators['cqq3_cHbox']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cHbox']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq31_cHDD']['combined_noq']  = OrderedDict()
 operators['cqq31_cHDD']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHDD/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq31_cHDD/ptj2_met_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq31_cHDD']['combined_noq']['color'] =  '1'
-operators['cqq31_cHDD']['combined_noq']['linestyle'] =  '7'
+operators['cqq31_cHDD']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq1_cW']['combined_noq']  = OrderedDict()
 operators['cqq1_cW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq1_cW/deltaphijj_met_etal1_mee_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq1_cW']['combined_noq']['color'] =  '1'
-operators['cqq1_cW']['combined_noq']['linestyle'] =  '7'
+operators['cqq1_cW']['combined_noq']['linestyle'] =  '2'
 
 operators['cHbox_cqq1']['combined_noq']  = OrderedDict()
 operators['cHbox_cqq1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHbox_cqq1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHbox_cqq1/ptj2_met_etal1_mee_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHbox_cqq1']['combined_noq']['color'] =  '1'
-operators['cHbox_cqq1']['combined_noq']['linestyle'] =  '7'
+operators['cHbox_cqq1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHl3_cHDD']['combined_noq']  = OrderedDict()
 operators['cHl3_cHDD']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHDD/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHDD/ptj1_met_ptemuplus_mee_deltaetajj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHl3_cHDD']['combined_noq']['color'] =  '1'
-operators['cHl3_cHDD']['combined_noq']['linestyle'] =  '7'
+operators['cHl3_cHDD']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq11_cll1']['combined_noq']  = OrderedDict()
 operators['cqq11_cll1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cll1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cll1/ptj2_met_ptj2_mjj_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq11_cll1']['combined_noq']['color'] =  '1'
-operators['cqq11_cll1']['combined_noq']['linestyle'] =  '7'
+operators['cqq11_cll1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHl3_cHl1']['combined_noq']  = OrderedDict()
 operators['cHl3_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHl1/etal1_mll_mjj_mjj_mjj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHl3_cHl1']['combined_noq']['color'] =  '1'
-operators['cHl3_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cHl3_cHl1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHl3_cll1']['combined_noq']  = OrderedDict()
 operators['cHl3_cll1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cll1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cll1/etal1_met_mjj_mjj_mjj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHl3_cll1']['combined_noq']['color'] =  '1'
-operators['cHl3_cll1']['combined_noq']['linestyle'] =  '7'
+operators['cHl3_cll1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHl3_cHbox']['combined_noq']  = OrderedDict()
 operators['cHl3_cHbox']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHbox/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHl3_cHbox/ptj1_met_mjj_mjj_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHl3_cHbox']['combined_noq']['color'] =  '1'
-operators['cHl3_cHbox']['combined_noq']['linestyle'] =  '7'
+operators['cHl3_cHbox']['combined_noq']['linestyle'] =  '2'
 
 operators['cHbox_cHl1']['combined_noq']  = OrderedDict()
 operators['cHbox_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHbox_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHbox_cHl1/etal1_met_mjj_mjj_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHbox_cHl1']['combined_noq']['color'] =  '1'
-operators['cHbox_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cHbox_cHl1']['combined_noq']['linestyle'] =  '2'
 
 operators['cHq1_cHl1']['combined_noq']  = OrderedDict()
 operators['cHq1_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq1_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHq1_cHl1/etal1_met_mjj_mjj_etal1/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHq1_cHl1']['combined_noq']['color'] =  '1'
-operators['cHq1_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cHq1_cHl1']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq3_cW']['combined_noq']  = OrderedDict()
 operators['cqq3_cW']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cW/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq3_cW/deltaphijj_met_ptj2_ptj2_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq3_cW']['combined_noq']['color'] =  '1'
-operators['cqq3_cW']['combined_noq']['linestyle'] =  '7'
+operators['cqq3_cW']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq11_cHWB']['combined_noq']  = OrderedDict()
 operators['cqq11_cHWB']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHWB/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHWB/ptj2_ptll_mjj_mee_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq11_cHWB']['combined_noq']['color'] =  '1'
-operators['cqq11_cHWB']['combined_noq']['linestyle'] =  '7'
+operators['cqq11_cHWB']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq11_cHl1']['combined_noq']  = OrderedDict()
 operators['cqq11_cHl1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHl1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHl1/ptj2_ptll_mjj_mjj_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq11_cHl1']['combined_noq']['color'] =  '1'
-operators['cqq11_cHl1']['combined_noq']['linestyle'] =  '7'
+operators['cqq11_cHl1']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq11_cHl3']['combined_noq']  = OrderedDict()
 operators['cqq11_cHl3']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHl3/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHl3/ptj2_mll_mjj_mjj_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq11_cHl3']['combined_noq']['color'] =  '1'
-operators['cqq11_cHl3']['combined_noq']['linestyle'] =  '7'
+operators['cqq11_cHl3']['combined_noq']['linestyle'] =  '2'
 
 operators['cHbox_cHWB']['combined_noq']  = OrderedDict()
 operators['cHbox_cHWB']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHbox_cHWB/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cHbox_cHWB/ptj1_met_mjj_mee_mll/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cHbox_cHWB']['combined_noq']['color'] =  '1'
-operators['cHbox_cHWB']['combined_noq']['linestyle'] =  '7'
+operators['cHbox_cHWB']['combined_noq']['linestyle'] =  '2'
 
 operators['cW_cHq1']['combined_noq']  = OrderedDict()
 operators['cW_cHq1']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHq1/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHq1/deltaphijj_met_etal1_mll_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cW_cHq1']['combined_noq']['color'] =  '1'
-operators['cW_cHq1']['combined_noq']['linestyle'] =  '7'
+operators['cW_cHq1']['combined_noq']['linestyle'] =  '2'
 
 operators['cW_cHq3']['combined_noq']  = OrderedDict()
 operators['cW_cHq3']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHq3/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cW_cHq3/deltaphijj_met_deltaphijj_deltaphijj_deltaphijj/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cW_cHq3']['combined_noq']['color'] =  '1'
-operators['cW_cHq3']['combined_noq']['linestyle'] =  '7'
+operators['cW_cHq3']['combined_noq']['linestyle'] =  '2'
 
 operators['cqq11_cHbox']['combined_noq']  = OrderedDict()
 operators['cqq11_cHbox']['combined_noq']['path'] = '/afs/cern.ch/work/g/gboldrin/public/public/CMSSW_10_2_13/src/HiggsAnalysis/AnalyticAnomalousCoupling/merged_QCD_noQuad_v4/SSWW_OSWW_OSWWQCD_inWW_WZeu_WZQCD_ZZ_2D/combination_SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHbox/EFTNeg/datacards/SSWW_inWW_ZZ2e2mu_ZZ2e2muQCD_OSWW_OSWWQCD_WZ_WZQCD_cqq11_cHbox/ptj2_met_etal1_mee_ptj2/higgsCombineTest.MultiDimFit.mH125.root'
 operators['cqq11_cHbox']['combined_noq']['color'] =  '1'
-operators['cqq11_cHbox']['combined_noq']['linestyle'] =  '7'
+operators['cqq11_cHbox']['combined_noq']['linestyle'] =  '2'
+
+
+
+ls = glob("summary2DVBS_WW_Tot_noQuad/*_unzoomed.png")
+ops = [i.split("/")[1].split("_unzoomed.png")[0] for i in ls]
+
+for i in ops:
+    operators.pop(i,  None)

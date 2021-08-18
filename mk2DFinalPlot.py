@@ -22,9 +22,9 @@ def ConvertOptoLatex(op):
         'cHW': 'Q_{HW}',
         'cHWB': 'Q_{HWB}',
         'cll': 'Q_{ll}',
-        'cll1': 'Q_{ll}\'',
+        'cll1': 'Q_{ll}^{(1)}',
         'cqq1': 'Q_{qq}^{(1)}',
-        'cqq11': 'Q_{qq}^{(1)}\'',
+        'cqq11': 'Q_{qq}^{(1,1)}',
         'cHl1': 'Q_{Hl}^{(1)}',
         'cHl3': 'Q_{Hl}^{(3)}',
         'cHq1': 'Q_{Hq}^{(1)}',
@@ -33,7 +33,7 @@ def ConvertOptoLatex(op):
         'cHu': 'Q_{Hu}',
         'cHd': 'Q_{Hd}',
         'cqq3': 'Q_{qq}^{(3)}',
-        'cqq31': 'Q_{qq}^{(3)}\'',
+        'cqq31': 'Q_{qq}^{(3,1)}',
 
     }
 
@@ -331,10 +331,12 @@ if __name__ == "__main__":
 
     mkdir(args.outf)
 
-    ROOT.gStyle.SetLineStyleString(11,"20 20 50")
-    ROOT.gStyle.SetLineStyleString(12,"30 10 60")
+    ROOT.gStyle.SetLineStyleString(9,"4 5 4 5 4 5 4 5 12")
+    ROOT.gStyle.SetLineStyleString(10,"20 10 20 10 4 10 4 10")
+    ROOT.gStyle.SetLineStyleString(11,"20 12 10 12 4 12 10 12")
+    ROOT.gStyle.SetLineStyleString(12,"10 15 10")
     ROOT.gStyle.SetLineStyleString(13,"10 5 20")
-    ROOT.gStyle.SetLineStyleString(14,"30 80")
+    ROOT.gStyle.SetLineStyleString(14,"20 12 4 12 4 12 4 12")
     ROOT.gStyle.SetLineStyleString(15,"10 30")
 
     if not is_combo:
@@ -449,6 +451,9 @@ if __name__ == "__main__":
                 c.Print(args.outf + "/" + op + "/r_" + op + "{}.pdf".format(idx))
 
                 canvas_d['1sg'][idx*step][0].GetYaxis().SetRangeUser(-1.5*abs(y_min), 1.5*abs(y_max))
+                c.Update()
+                ROOT.gPad.Update()
+                ROOT.gPad.RedrawAxis()
                 c.Draw()
                 c.Print(args.outf + "/" + op + "/" + op + "{}.pdf".format(idx))
 
@@ -498,6 +503,15 @@ if __name__ == "__main__":
                 fakeG.SetLineWidth(3)
                 graphs.append(deepcopy(fakeG))
                 leg.AddEntry(graphs[idx], ConvertOptoLatex(key), "F")
+
+
+            exp = ROOT.TGraph()
+            exp.SetPoint(0, 0, 0)
+            exp.SetMarkerSize(3)
+            exp.SetMarkerStyle(34)
+            exp.SetMarkerColor(ROOT.kGray +2)
+
+            leg.AddEntry(exp, "SM", "P")
 
 
             #tex3 = ROOT.TLatex(0.86,.89,"100 fb^{-1}   (13 TeV)")

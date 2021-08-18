@@ -205,6 +205,8 @@ if __name__ == '__main__':
 
             #retireve shape:
 
+            print("Retrieving Shapes")
+
             shape_file = glob(var_f + "/shapes/*.root")[0]
             f = ROOT.TFile(shape_file)
 
@@ -271,7 +273,6 @@ if __name__ == '__main__':
             h_sm.GetYaxis().SetLabelSize(0.04)
             h_sm.GetYaxis().SetTitleOffset(1)
             h_sm.GetYaxis().SetMaxDigits(maxd)
-            #h_sm.Draw("hist")
 
             if args.stackQCD != None and op in qcdsm.keys():
                 h_smstack = ROOT.THStack("hs", ";;Events")
@@ -288,7 +289,6 @@ if __name__ == '__main__':
                 h_smstack.GetYaxis().SetTitleOffset(1)
                 h_smstack.GetYaxis().SetMaxDigits(maxd)
                 c.Update()
-                
 
             elif args.stackQCD != None and op not in qcdsm.keys():
                 h_smstack = ROOT.THStack("hs", ";;Events")
@@ -304,7 +304,7 @@ if __name__ == '__main__':
                 h_smstack.GetYaxis().SetTitleOffset(1)
                 h_smstack.GetYaxis().SetMaxDigits(maxd)
                 c.Update()
-            
+
             else:
                 h_sm.Draw("hist")
 
@@ -506,12 +506,28 @@ if __name__ == '__main__':
                     h_smstack.SetMaximum(y_max + float(args.ymaxscale)*y_max)
                 else:
                     h_sm.GetYaxis().SetRangeUser(y_min, y_max + float(args.ymaxscale)*y_max)
-
+                
+                """
                 if args.stackQCD == None:
                     h_err = deepcopy(h_sm)
                 else:
                     h_err = deepcopy(h_smewk)
                     h_err.Add(h_smqcd)
+                """
+
+                if args.stackQCD == None:
+                    h_err = deepcopy(h_sm)
+                
+                elif args.stackQCD != None and op in qcdsm.keys():
+                    h_err = deepcopy(h_sm)
+
+                elif args.stackQCD != None and op not in qcdsm.keys():
+                    h_err = deepcopy(h_sm)
+                    h_err.Add(h_smqcd)
+
+                if var_n == "mjj":
+                    for i in range(h_err.GetNbinsX()):
+                            print(h_err.GetBinError(i))
                     
                 h_err.SetMarkerSize(0)
                 h_err.SetFillColor(ROOT.kBlack)
@@ -578,19 +594,37 @@ if __name__ == '__main__':
                 tex6.Draw()
 
                 pad4.cd()
-
+                
+                """
                 if args.stackQCD == None:
                     h_bsm_ratio_err = deepcopy(h_sm)
                     h_bsm_ratio_err.Divide(h_sm)
+                    
                 else:
                     h_bsm_ratio_err = deepcopy(h_smewk)
                     h_bsm_ratio_err.Add(h_smqcd)
                     h_bsm_ratio_err.Divide(h_bsm_ratio_err)
                     if h_bsm_ratio_err.GetMaximum() != 1.0: sys.exit("ERROR")
+                """
+
+                if args.stackQCD == None:
+                    h_bsm_ratio_err = deepcopy(h_sm)
+                    h_bsm_ratio_err.Divide(h_sm)
+                    if h_bsm_ratio_err.GetMaximum() != 1.0: sys.exit("ERROR")
+
+                elif args.stackQCD != None and op in qcdsm.keys():
+                    h_bsm_ratio_err = deepcopy(h_sm)
+                    h_bsm_ratio_err.Divide(h_bsm_ratio_err)
+                    #if h_bsm_ratio_err.GetMaximum() != 1.0: sys.exit("ERROR")
+
+                elif args.stackQCD != None and op not in qcdsm.keys():
+                    h_bsm_ratio_err = deepcopy(h_sm)
+                    h_bsm_ratio_err.Add(h_smqcd)
+                    h_bsm_ratio_err.Divide(h_bsm_ratio_err)
+                    #if h_bsm_ratio_err.GetMaximum() != 1.0: sys.exit("ERROR")
 
                 h_bsm_ratio_err.SetFillColor(ROOT.kBlack)
                 h_bsm_ratio_err.SetFillStyle(3004)
-
 
                 h_bsm_r_2 = []
                 for i in h_bsm_r:

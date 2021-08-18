@@ -319,8 +319,6 @@ operators['cqq31']['cqq3']['linesize'] = 4
 operators['cqq31']['cqq3']['linestyle'] = 1
 
 
-"""
-
 
 operators['cHl3'] = OrderedDict()
 operators['cHl3']['cHbox'] = OrderedDict()
@@ -2225,10 +2223,3 @@ operators['cHl1']['cqq31']['yscale'] = 1
 operators['cHl1']['cqq31']['linecolor'] = 1370
 operators['cHl1']['cqq31']['linesize'] = 4
 operators['cHl1']['cqq31']['linestyle'] = 2
-
-
-
-
-
-
-"""

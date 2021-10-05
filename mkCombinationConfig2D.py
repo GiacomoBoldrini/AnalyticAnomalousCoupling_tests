@@ -30,9 +30,11 @@ if __name__ == "__main__":
     #splitting channels lists
     ch_ = args.ch.split(",")
     chp_ = args.chprefix.split(",")
-    chprocess_ =args.chprocess.split(",")
+    chprocess_ = args.chprocess.split(",") + ["combined"] #combined as last channel for color an linestyle mapping
     colors = [int(i) for i in args.colors.split(",")]
     lines_ = [int(i) for i in args.linestyles.split(",")]
+
+    color_dict = {i:{'color':j, 'ls':k} for i,j,k in zip(chprocess_,colors, lines_)}
 
 
     # full 15 operators of interest
@@ -80,7 +82,10 @@ if __name__ == "__main__":
                     ch_var = (ch_var.strip(" ")).split(" ")
                     for i in ch_var:
                         if i != '' and i != "\n":
-                            all_vars.append([i.strip("\n").split("_")[0], "_".join(i.strip("\n").split("_")[1:])]) #in case of variables with underscores
+                            var = i.split("_")[-1].split("\n")[0]
+                            channel = i.split("_" + var)[0]
+                            #all_vars.append([i.strip("\n"), "_".join(i.strip("\n").split("_")[1:])]) #in case of variables with underscores
+                            all_vars.append([channel, var])
                     break
 
             channels = [i[0] for i in all_vars]
@@ -128,18 +133,17 @@ if __name__ == "__main__":
     for sub in final_dict.keys():
         file_.write("operators['{}'] = OrderedDict()\n".format(sub))
 
-        idx = 0
         for key in final_dict[sub].keys():
             if key != "combined":
+                col = color_dict[key]['color']
+                ls = color_dict[key]['ls']
                 file_.write("operators['{}']['{}']  = OrderedDict()\n".format(sub, key))
                 file_.write("operators['{}']['{}']['path'] =  '{}'\n".format(sub, key, final_dict[sub][key]))
-                file_.write("operators['{}']['{}']['color'] =  '{}'\n".format(sub, key, colors[idx]))
-                file_.write("operators['{}']['{}']['linestyle'] =  '{}'\n".format(sub, key, lines_[idx]))
-                idx += 1
+                file_.write("operators['{}']['{}']['color'] =  '{}'\n".format(sub, key, col))
+                file_.write("operators['{}']['{}']['linestyle'] =  '{}'\n".format(sub, key, ls))
 
-
-        comb_color = colors[-1]
-        comb_ls = lines_[-1]
+        comb_color = color_dict["combined"]["color"]
+        comb_ls = color_dict["combined"]["ls"]
 
         file_.write("operators['{}']['combined']  = OrderedDict()\n".format(sub, 'combined'))
         file_.write("operators['{}']['combined']['path'] =  '{}'\n".format(sub, final_dict[sub]['combined']))

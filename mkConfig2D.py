@@ -19,13 +19,49 @@ if __name__ == "__main__":
 
     file_ = open(args.out, 'w')
 
-    colors = [ROOT.kAzure+1, ROOT.kGray+2, ROOT.kViolet-4, ROOT.kSpring+9, ROOT.kOrange+10]
-    COLORS = colors * 100 #maybe a waste but repeat the colors 
+    file_.write("from collections import OrderedDict \n\n\n")
+    file_.write("operators = OrderedDict()\n\n\n")
+
+    colors = {
+        "cqq3": ROOT.kAzure-2,
+        "cqq31": 1370,
+        "cHl3": 1213,
+        "cHl1": 1230,
+        "cqq1": 1383,
+        "cqq11": 1270,
+        "cHDD": ROOT.kOrange+9,
+        "cW": 1298,
+        "cHW": 1315,
+        "cHWB": ROOT.kPink-5,
+        "cHq1": 1349,
+        "cHq3": 1200,
+        "cHbox": 1247,
+        "cll1": 1407,
+    }
+
+    ls = {
+        "cqq3": 1,
+        "cqq31": 2,
+        "cHl3": 3,
+        "cHl1": 4,
+        "cqq1": 5,
+        "cqq11": 6,
+        "cHDD": 7,
+        "cW": 8,
+        "cHW": 9,
+        "cHWB": 10,
+        "cHq1": 11,
+        "cHq3": 12,
+        "cHbox": 13,
+        "cll1": 14,
+    }
+
+    #colors = [ROOT.kAzure+1, ROOT.kGray+2, ROOT.kViolet-4, ROOT.kSpring+9, ROOT.kOrange+10]
+    #COLORS = colors * 100 #maybe a waste but repeat the colors 
 
     #operators
     #file_.write("operators = {\n")
-    file_.write("from collections import OrderedDict \n\n\n")
-    file_.write("operators = OrderedDict()\n\n\n")
+
 
     for op in ops:
 
@@ -72,8 +108,9 @@ if __name__ == "__main__":
             file_.write("operators['{}']['{}']['op'] = '{}'\n".format(op, s_op[0], s_op[0]))
             file_.write("operators['{}']['{}']['xscale'] = 1\n".format(op, s_op[0]))
             file_.write("operators['{}']['{}']['yscale'] = 1\n".format(op, s_op[0]))
-            file_.write("operators['{}']['{}']['linecolor'] = {}\n".format(op, s_op[0], COLORS[idx]))
+            file_.write("operators['{}']['{}']['linecolor'] = {}\n".format(op, s_op[0], colors[s_op[0]]))
             file_.write("operators['{}']['{}']['linesize'] = 4\n".format(op, s_op[0]))
+            file_.write("operators['{}']['{}']['linestyle'] = {}\n".format(op, s_op[0], ls[s_op[0]]))
             file_.write("\n")
 
             #second op

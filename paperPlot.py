@@ -162,7 +162,7 @@ if __name__ == '__main__':
 
     mkdir(args.out)
 
-    os.system("cp /afs/cern.ch/user/g/gboldrin/index.php " + args.out)
+    os.system("cp /afs/cern.ch/user/g/gboldrin/public/index.php " + args.out)
 
     lin_scale = float(args.linscale)
     quad_scale = float(args.quadscale)
@@ -606,7 +606,7 @@ if __name__ == '__main__':
                 if args.stackQCD == None:
                     h_bsm_ratio_err = deepcopy(h_sm)
                     h_bsm_ratio_err.Divide(h_sm)
-                    if h_bsm_ratio_err.GetMaximum() != 1.0: sys.exit("ERROR")
+                    #if h_bsm_ratio_err.GetMaximum() != 1.0: sys.exit("ERROR")
 
                 elif args.stackQCD != None and op in qcdsm.keys():
                     h_bsm_ratio_err = deepcopy(h_sm)

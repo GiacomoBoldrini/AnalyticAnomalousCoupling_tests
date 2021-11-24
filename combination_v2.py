@@ -8,23 +8,25 @@ from tqdm import tqdm
 import stat
 
 opr = {
-    'cHDD':[-20,20],
-    'cHWB':[-20,20], 
-    'cHW':[-30,30], 
-    'cHbox':[-20,20], 
-    'cHl1':[-50,50], 
-    'cHl3':[-30,30], 
-    'cHq1':[-30,30], 
-    'cHq3':[-30,30], 
-    'cW':[-30,30], 
-    'cll1':[-30,30], 
-    'cll':[-70,70], 
-    'cqq11':[-30,30], 
-    'cqq1':[-30,30], 
-    'cqq31':[-30,30], 
-    'cqq3':[-30,30]
+    #'cW': [-1,1],
+    'cW': [-1.5,1.5],
+    'cHWB': [-40,40],
+    'cHl3' : [-2,2],
+    'cHq1':[-4,4],
+    'cHq3': [-4,4],
+    'cll1': [-2,2],
+    'cHbox': [-40,40],
+    #'cHDD' : [-50,50], 
+    'cHDD' : [-100,100],
+    #'cHl1' : [-50,50], 
+    'cHl1' : [-200,200], 
+    'cHW': [-20,20]  ,    
+    'cqq11': [-2,2]  ,     
+    'cqq1' : [-2,2] ,  
+    'cqq31':  [-2,2] ,   
+    'cqq3':  [-3,3] ,   
+    'cll':   [-100,100]   
 }
-
 
 def makeActivations(outdir, models, prefix):
     
@@ -128,7 +130,9 @@ def makeExecRunt(model, variables, ops, outdir, tag):
 
 def combineCards(processes, variables):
     t = "combineCards.py"
+   
     for proc, v in zip(processes, variables):
+        
         t += " {}_{}=datacard_{}.txt".format(proc, v, proc)
 
     t += " > datacard.txt"
@@ -154,7 +158,7 @@ def makeExecRunc(variables, ops, outdir ):
     for var in variables:
         f.write("#-----------------------------------\n")
         f.write("cd {}/{}\n".format(model, var))
-        to_w = "combine -M MultiDimFit model.root  --algo=grid --points 5000  -m 125   -t -1   --robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND --redefineSignalPOIs {}     --freezeParameters r      --setParameters r=1    --setParameterRanges {}  --verbose -1".format(",".join("k_"+op for op in ops), ranges)
+        to_w = "combine -M MultiDimFit model.root  --algo=grid --points 200000  -m 125   -t -1   --robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND --redefineSignalPOIs {}     --freezeParameters r      --setParameters r=1    --setParameterRanges {}  --verbose -1".format(",".join("k_"+op for op in ops), ranges)
         to_w += "\n"
         f.write(to_w)
         f.write("cd ../../..\n\n\n")
@@ -218,7 +222,7 @@ if __name__ == "__main__":
                 all_dict[process][op][model] = {}
 
                 for var in glob(s + "/" + model + "/datacards/*/*"):
-
+                    #print(s, var)
                     v = var.split("/")[-1]
                     if v in combinations[process]["ignore_vars"]:  continue
                     if combinations[process]["vars"] != '*':
@@ -229,7 +233,7 @@ if __name__ == "__main__":
                     all_dict[process][op][model][v] = {}
                     all_dict[process][op][model][v]['datacard'] = glob(var + "/{}.txt".format(combinations[process]["datacard_tag"]))[0]
                     all_dict[process][op][model][v]['shapes'] = glob(var + "/shapes/*.root")[0]
-
+                    
 
     #find common operators
     processes = combinations.keys()
@@ -269,10 +273,10 @@ if __name__ == "__main__":
                 var_name = "_".join(w for w in wc)
                 mkdir(cp + "/" + var_name)
                 mkdir(cp + "/" + var_name + "/shapes/")
-
+                
 
                 for process_, v in zip(variables[op].keys(), wc):
-                    
+                    #print(op, process_, v, all_dict[process_][op][model][v]['datacard'])    
                     os.system("cp {} {}/datacard_{}.txt".format(os.path.abspath(all_dict[process_][op][model][v]['datacard']), cp + "/" + var_name, process_))
                     os.system("cp {} {}".format(os.path.abspath(all_dict[process_][op][model][v]['shapes']), cp + "/" + var_name + "/shapes/"))
 

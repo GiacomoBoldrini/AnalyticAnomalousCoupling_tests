@@ -1,46 +1,44 @@
+combinations["WZ_WZQCD"] = {
+       
+       'folder' : 'bestFits_2D/WZ_WZQCD_2op_best',
+       'vars' : '*',
+       'prefix' : 'to_Latinos',
+       'models' : ["EFTNeg"],
+       'datacard_tag' : 'datacard',
+       'ignore_ops' : [],
+       'ignore_vars' : []
+
+}
+combinations["OSWW_OSWWQCD"] = {
+       
+       'folder' : 'bestFits_2D/OSWW_OSWWQCD_2op_best',
+       'vars' : '*',
+       'prefix' : 'to_Latinos',
+       'models' : ["EFTNeg"],
+       'datacard_tag' : 'datacard',
+       'ignore_ops' : [],
+       'ignore_vars' : []
+}
 combinations["SSWW"] = {
-       
-       'folder' : 'SSWW_1op_nuis102',
-       'vars' : '*',
-       'prefix' : 'to_Latinos',
-       'models' : ["EFTNeg"],
-       'datacard_tag' : 'datacard',
-       'ignore_ops' : [],
-       'ignore_vars' : ['etal1','etal2','phij1','phij2', 'etaj1', 'etaj2', 'ptll']
-}
 
-combinations["OSWW"] = {
-       
-       'folder' : 'OSWW_1op',
+       'folder' : 'bestFits_2D/SSWW_2op_best',
        'vars' : '*',
        'prefix' : 'to_Latinos',
        'models' : ["EFTNeg"],
        'datacard_tag' : 'datacard',
        'ignore_ops' : [],
-       'ignore_vars' : ['etal1','etal2','phij1','phij2', 'etaj1', 'etaj2', 'ptll']
+       'ignore_vars' : []
 }
+combinations["ZZ2e2mu_ZZ2e2muQCD"] = {
 
-combinations["inWW"] = {
-       
-       'folder' : 'inWW_1op',
+       'folder' : 'bestFits_2D/ZZ2e2mu_ZZ2e2muQCD_2op_best',
        'vars' : '*',
        'prefix' : 'to_Latinos',
        'models' : ["EFTNeg"],
        'datacard_tag' : 'datacard',
        'ignore_ops' : [],
-       'ignore_vars' : ['etal1','etal2','phij1','phij2', 'etaj1', 'etaj2', 'ptll']
+       'ignore_vars' : []
 }
-combinations["OSWWQCD"] = {
-       
-       'folder' : 'OSWWQCD_1op',
-       'vars' : '*',
-       'prefix' : 'to_Latinos',
-       'models' : ["EFTNeg"],
-       'datacard_tag' : 'datacard',
-       'ignore_ops' : [],
-       'ignore_vars' : ['etal1','etal2','phij1','phij2', 'etaj1', 'etaj2', 'ptll']
-}
-
-output["name"] = "SSWW_OSWW_inWW_OSWWQCD"
+output["name"] = "SSWW_OSWW_WZ_ZZ_2op"
 output["prefix"] = "combination"
 output["models"] = ["EFTNeg"]

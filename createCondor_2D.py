@@ -7,21 +7,24 @@ import numpy as np
 import stat
 
 opr = {
-    'cW': [-1,1],
-    'cHWB': [-10,10],
-    'cHl3' : [-20,20],
-    'cHq1':[-5,5],
-    'cHq3': [-3,3],
-    'cll1': [-20,20],
-    'cHbox': [-25,25],
-    'cHDD' : [-10,10], 
-    'cHl1' : [-20,20], 
-    'cHW': [-8,8]  ,    
+    'cW': [-5,5],
+    #'cHWB': [-10,10],
+    'cHWB': [-30,30],
+    'cHl3' : [-5,5],
+    #'cHq1':[-1,1],
+    'cHq1':[-8,8],
+    'cHq3': [-10,10],
+    'cll1': [-2,2],
+    #'cHbox': [-10,10],
+    'cHbox': [-10,10],
+    'cHDD' : [-50,20], 
+    'cHl1' : [-70,70], 
+    'cHW': [-20,20]  ,    
     'cqq11': [-2,2]  ,     
     'cqq1' : [-2,2] ,  
-    'cqq31':  [-2,2] ,   
-    'cqq3':  [-1,1] ,   
-    'cll':   [-20,20]   
+    'cqq31':  [-1.5,1.5] ,   
+    'cqq3':  [-1.5,1.5] ,   
+    'cll':   [-100,100]   
 }
 
 def redemensionOpinput(config):
@@ -111,7 +114,7 @@ def makeSubmit(outdir, npoints, nop):
     f1.write('error       = $(dir)/submit.err\n')
     f1.write('log         = $(dir)/submit.log\n')
     f1.write('queue dir,{},{},{} from list.txt\n'.format(ops_str_var, min_str_var, max_str_var))
-    f1.write('+JobFlavour = "longlunch"\n')
+    f1.write('+JobFlavour = "espresso"\n')
 
     f1.close()
     #convert to executable
@@ -149,7 +152,7 @@ if __name__ == "__main__":
     prc = subfolder.split(prefix + "_")[-1]
     op_ = prc.split(process + "_")[-1]
     ops = op_.split("_")
-
+    
     nop = len(ops)
 
     # make submit files
